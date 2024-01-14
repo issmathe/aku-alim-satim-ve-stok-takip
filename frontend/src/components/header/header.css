@@ -1,0 +1,135 @@
+/* header.css */
+
+/* Reset CSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Temel Sayfa Stili */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+}
+
+/* Header Stili */
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logoContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 20px;
+    font-size: 24px;
+}
+
+nav ul {
+    list-style-type: none;
+    display: flex;
+}
+
+nav li {
+    margin-right: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+}
+
+.headerButtonContainer {
+    display: flex;
+    align-items: center;
+    margin-right: 20px; /* Düğmeler arasına boşluk ekler */
+}
+
+.button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.buttonPrimary {
+    margin: 7px;
+    background-color: #f00; /* Örnek bir renk */
+    color: #fff;
+}
+
+.buttonSecondary {
+    background-color: #00f; /* Örnek bir renk */
+    color: #fff;
+}
+
+/* Hover efekti */
+.button:hover {
+    opacity: 0.8;
+}
+
+/* Media Query ile Düzenleme (Sayfa küçülünce düzenlemek için) */
+@media (max-width: 768px) {
+    .logoContainer {
+        padding-left: 10px;
+    }
+
+    nav ul {
+        flex-direction: column;
+    }
+
+    nav li {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+
+    .headerButtonContainer {
+        margin-right: 0;
+        margin-left: auto;
+    }
+}
+/* header.css */
+
+/* ... (diğer stiller) */
+
+/* HavaDurumu stilini güncelle */
+.hava-durumu {
+    text-align: left;
+    margin-right: auto;
+}
+
+/* Hava durumu içindeki paragraflar arasına boşluk ekleyin */
+.hava-durumu p {
+    margin-bottom: 8px;
+}
+
+/* Media Query ile Düzenleme (Sayfa küçülünce düzenlemek için) */
+@media (max-width: 768px) {
+    .logoContainer {
+        padding-left: 10px;
+    }
+
+    nav ul {
+        flex-direction: column;
+    }
+
+    nav li {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+
+    .headerButtonContainer {
+        margin-right: 0;
+        margin-left: auto;
+    }
+}
