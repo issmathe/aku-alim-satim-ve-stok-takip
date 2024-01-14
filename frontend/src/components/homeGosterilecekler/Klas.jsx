@@ -37,14 +37,14 @@ const Klas = () => {
   return (
     <div style={{ paddingLeft: "40px" }}>
       <div>
-        <h1 style={{ fontSize: '25px' }}>Klas Akü</h1>
-        <h1 style={{ fontSize: '25px' }}>Toplam satış: {totalSales}₺</h1>
+        <h1 style={{ fontSize: '25px'}}>Klas Akü</h1>
+        <h1 style={{ fontSize: '25px',color:"blue ",  }}><span style={{backgroundColor:"pink",color:"red"}}>Toplam satış:</span> {totalSales}₺</h1>
         <div className="card" style={{ width: "18rem" }}>
           {klassAkuData.map((item) => (
             <div key={item._id} className="card-body">
               <h5 className="card-title">{item.name}</h5>
               <p className="card-text">
-                Fiyata: <span style={{ color: "blue" }}>{item.price}</span>{" "}
+                Fiyat: <span style={{ color: "blue" }}>{item.price}</span>{" "}
                 <br /> Stok:{" "}
                 <span style={{ color: "green" }}>{item.piece}</span>
               </p>
