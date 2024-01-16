@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-const Klas = () => {
+const KlasAku = () => {
   const [klassAkuData, setKlassAkuData] = useState([]);
   const [totalSales, setTotalSales] = useState(0);
 
@@ -65,4 +65,4 @@ const Klas = () => {
   );
 };
 
-export default Klas;
+export default KlasAku;

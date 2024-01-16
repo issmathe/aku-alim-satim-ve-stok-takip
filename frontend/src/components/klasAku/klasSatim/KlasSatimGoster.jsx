@@ -1,5 +1,3 @@
-// KlasSatimGoster.js
-
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Container, Table, Button, Modal, Form } from "react-bootstrap";
@@ -13,6 +11,7 @@ const KlasSatimGoster = () => {
     name: "",
     aku: "",
     piece: 0,
+    paymentType: "", // Ödeme tipi ekledik
   });
 
   const fetchData = async () => {
@@ -44,25 +43,26 @@ const KlasSatimGoster = () => {
       );
     }
   };
+
   const handleDelete = async (itemId) => {
     try {
-      // Kullanıcıya onay mesajı göster
-      const userConfirmed = window.confirm("Bu öğeyi silmek istediğinizden emin misiniz?");
-      
+      const userConfirmed = window.confirm(
+        "Bu öğeyi silmek istediğinizden emin misiniz?"
+      );
+
       if (userConfirmed) {
-        // Kullanıcı onay verdiyse silme işlemi gerçekleştir
-        await axios.delete(`${process.env.REACT_APP_SERVER_URL}/api/kayit/${itemId}`);
-        fetchData(); // Silme işleminden sonra veriyi güncelle
-        fetchTotalSales(); // Toplam satış verisini güncelle
+        await axios.delete(
+          `${process.env.REACT_APP_SERVER_URL}/api/kayit/${itemId}`
+        );
+        fetchData();
+        fetchTotalSales();
       } else {
-        // Kullanıcı onay vermediyse işlemi iptal et
         console.log("Silme işlemi iptal edildi.");
       }
     } catch (error) {
       console.error("Veri silme hatası:", error.message);
     }
   };
-  
 
   const handleEdit = (item) => {
     setEditItemId(item._id);
@@ -70,6 +70,7 @@ const KlasSatimGoster = () => {
       name: item.name,
       aku: item.aku,
       piece: item.piece,
+      paymentType: item.paymentType, // Ödeme tipini set ettik
     });
     setShowEditModal(true);
   };
@@ -86,8 +87,8 @@ const KlasSatimGoster = () => {
       );
       console.log("Güncelleme başarılı:", response.data);
       setShowEditModal(false);
-      fetchData(); // Veriyi güncelle
-      fetchTotalSales(); // Toplam satış verisini güncelle
+      fetchData();
+      fetchTotalSales();
     } catch (error) {
       console.error("Veri güncelleme hatası:", error.message);
     }
@@ -103,20 +104,22 @@ const KlasSatimGoster = () => {
             <th>Satış Yapılan Kişi Bilgisi</th>
             <th>Akü Çeşidi</th>
             <th>Satış Fiyatı</th>
-            <th>İşlemler</th>
+            <th>Ödeme Tipi</th>
+            <th className="text-center">İşlemler</th>
           </tr>
         </thead>
         <tbody>
-          {klassAkuData.map((item) => (
+          {klassAkuData.slice().reverse().map((item) => (
             <tr key={item._id}>
               <td>{new Date(item.createdAt).toLocaleString()}</td>
               <td>{item.name}</td>
               <td>{item.aku}</td>
               <td>{item.piece}</td>
-              <td>
+              <td>{item.paymentType}</td>
+              <td className="text-center">
                 <Button
                   variant="danger"
-                  style={{marginRight:"21px"}}
+                  style={{ marginRight: "21px" }}
                   onClick={() => handleDelete(item._id)}
                 >
                   Sil
@@ -172,13 +175,34 @@ const KlasSatimGoster = () => {
                 }
               />
             </Form.Group>
+
+            <Form.Group controlId="formPaymentType">
+              <Form.Label>Ödeme Tipi</Form.Label>
+              <Form.Control
+                as="select"
+                value={editedData.paymentType}
+                onChange={(e) =>
+                  setEditedData({
+                    ...editedData,
+                    paymentType: e.target.value,
+                  })
+                }
+              >
+                <option value="nakit">Nakit</option>
+                <option value="visa">Visa</option>
+              </Form.Control>
+            </Form.Group>
           </Form>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleCloseEditModal}>
             İptal
           </Button>
-          <Button className="text-center" variant="primary" onClick={handleSaveEdit}>
+          <Button
+            className="text-center"
+            variant="primary"
+            onClick={handleSaveEdit}
+          >
             Kaydet
           </Button>
         </Modal.Footer>

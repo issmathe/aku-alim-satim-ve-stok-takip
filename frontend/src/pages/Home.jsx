@@ -1,6 +1,6 @@
 import React from 'react'
 import Header from '../components/header/Header.jsx'
-import Klas from '../components/homeGosterilecekler/Klas.jsx'
+import KlasAku from '../components/homeGosterilecekler/KlasAku.jsx'
 
 
 
@@ -9,7 +9,7 @@ const Home = () => {
     <div >
         <Header/>
         <div>
-        <Klas/>
+        <KlasAku/>
         </div>
     </div>
   )

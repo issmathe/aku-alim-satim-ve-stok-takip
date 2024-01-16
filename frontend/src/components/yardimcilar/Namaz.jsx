@@ -30,7 +30,7 @@ const Namaz = () => {
 
   return (
     <div>
-      <h2>Namaz Vakitleri</h2>
+      {/* <h2>Namaz Vakitleri</h2> */}
       {loading ? (
         <p>Veriler yükleniyor...</p>
       ) : (

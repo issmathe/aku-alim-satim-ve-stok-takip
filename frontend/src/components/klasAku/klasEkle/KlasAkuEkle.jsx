@@ -20,12 +20,12 @@ function KlasAkuEkle({ handleAddAkuClick }) {
         process.env.REACT_APP_SERVER_URL + "/api",
         formData
       );
-      console.log("Category created:", response.data);
+      console.log("Product created:", response.data);
       setSuccessMessage("Kayıt başarılı");
-      setFormData({ title: "", name: "", price: 0 });
-      window.location.reload();
+      setFormData({ title: "", name: "", piece: 0, price: 0 });
+      window.location.reload(); // Sayfayı yenile
     } catch (error) {
-      console.error("Error creating category:", error);
+      console.error("Error creating product:", error);
     }
   };
 
@@ -33,20 +33,20 @@ function KlasAkuEkle({ handleAddAkuClick }) {
     <div className="container mt-4">
       <div className="row justify-content-center">
         <div className="col-md-6">
-          <h2 className="background">Ürün Ekleme</h2>
+          <h2 className="background">Klas Akü Ürün Ekleme</h2>
           {successMessage && (
             <p className="alert alert-success">{successMessage}</p>
           )}
           <form onSubmit={handleSubmit}>
             <div className="mb-3">
               <label htmlFor="title" className="form-label">
-                Ürün Bilgisi:
+                Başlık:
               </label>
               <input
                 type="text"
                 className="form-control"
                 id="title"
-                placeholder="Enter title"
+                placeholder="Başlık"
                 value={formData.title}
                 onChange={(e) =>
                   setFormData({ ...formData, title: e.target.value })

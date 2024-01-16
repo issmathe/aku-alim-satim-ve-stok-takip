@@ -29,7 +29,7 @@ const HavaDurumu = () => {
   return (
     <div className="hava-durumu">
       {weatherData.main && (
-        <div>
+        <div >
           <p>Hava: {roundedTemperature} °C</p>
           <p>{weatherData.weather[0].description}</p>
         </div>

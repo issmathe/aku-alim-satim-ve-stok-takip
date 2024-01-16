@@ -1,4 +1,4 @@
-const Category = require("../models/KlassAkuKayit.js");
+const Category = require("../models/KlassAkuSatim.js");
 const express = require("express");
 const router = express.Router();
 

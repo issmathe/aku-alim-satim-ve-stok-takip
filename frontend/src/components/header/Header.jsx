@@ -1,17 +1,19 @@
 import { Link } from "react-router-dom";
 import HavaDurumu from "../yardimcilar/HavaDurumu";
 import "./header.css";
+// import Namaz from "../yardimcilar/Namaz";
 
 const Header = () => {
-
-
-
-
   return (
     <div>
       <header>
-        <div className="logoContainer">
-          <HavaDurumu />
+        <div className="d-flex">
+          <div className="logoContainer">
+            <HavaDurumu />
+          </div>
+          <div>
+            {/* <Namaz /> */}
+          </div>
         </div>
         <nav>
           <ul>
@@ -25,7 +27,6 @@ const Header = () => {
               <Link to="/klassatım">Klas Akü Satım İşlemleri</Link>
             </li>
           </ul>
-
         </nav>
         <div className="headerButtonContainer">
           <button className="button buttonPrimary">Kayıt ol</button>

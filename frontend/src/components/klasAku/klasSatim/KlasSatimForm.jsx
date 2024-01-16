@@ -3,6 +3,13 @@ import axios from "axios";
 
 function KlasSatimForm() {
   const [klassAkuData, setKlassAkuData] = useState([]);
+  const [formData, setFormData] = useState({
+    aku: "",
+    name: "",
+    piece: 0,
+    paymentType: "nakit", // Varsayılan olarak nakit seçili
+  });
+  const [successMessage, setSuccessMessage] = useState("");
 
   const fetchData = async () => {
     try {
@@ -19,32 +26,35 @@ function KlasSatimForm() {
     fetchData();
   }, []);
 
-  const [formData, setFormData] = useState({
-    aku: "",
-    name: "",
-    piece: 0,
-  });
-  const [successMessage, setSuccessMessage] = useState("");
-
   const handleSubmit = async (event) => {
     event.preventDefault();
     const existingAku = klassAkuData.find((item) => item.name === formData.aku);
+
     try {
       const response = await axios.post(
         process.env.REACT_APP_SERVER_URL + "/api/kayit",
         formData
       );
-      console.log("Category created:", response.data);
-      setSuccessMessage("Kayıt başarılı");
-      setFormData({ aku: "", name: "", piece: 0 }); // Form verilerini sıfırla
 
-      await axios.put(`http://localhost:5000/api/${existingAku._id}`, {
-        piece: existingAku.piece - 1,
+      console.log("Kategori oluşturuldu:", response.data);
+      setSuccessMessage("Kayıt başarılı");
+      setFormData({
+        aku: "",
+        name: "",
+        piece: 0,
+        paymentType: "nakit",
       });
+
+      await axios.put(
+        `${process.env.REACT_APP_SERVER_URL}/api/${existingAku._id}`,
+        {
+          piece: existingAku.piece - 1,
+        }
+      );
 
       window.location.reload(); // Sayfayı yeniden yükle
     } catch (error) {
-      console.error("Error creating category:", error);
+      console.error("Kategori oluşturulurken hata:", error);
     }
   };
 
@@ -52,11 +62,12 @@ function KlasSatimForm() {
     <div className="container mt-4">
       <div className="row justify-content-center">
         <div className="col-md-6">
-        <h2 class="text-center background">Klas Akü Satım İşlemleri</h2>
+          <h2 className="text-center background">Klas Akü Satım İşlemleri</h2>
 
           {successMessage && (
             <p className="alert alert-success">{successMessage}</p>
           )}
+
           <form onSubmit={handleSubmit}>
             <div className="mb-3">
               <select
@@ -76,6 +87,7 @@ function KlasSatimForm() {
                 ))}
               </select>
             </div>
+
             <div className="mb-3">
               <label htmlFor="name" className="form-label">
                 Alıcı İsim Soyisim:
@@ -84,29 +96,51 @@ function KlasSatimForm() {
                 type="text"
                 className="form-control"
                 id="name"
-                placeholder="Ürün İsmi"
+                placeholder="Alıcı İsim Soyisim"
                 value={formData.name}
                 onChange={(e) =>
                   setFormData({ ...formData, name: e.target.value })
                 }
               />
             </div>
+
             <div className="mb-3">
               <label htmlFor="piece" className="form-label">
-                Satiş Fiyatı:
+                Satış Fiyatı:
               </label>
               <input
                 type="number"
                 className="form-control"
                 id="piece"
-                placeholder="Ürün Fiyatı"
+                placeholder="Satış Fiyatı"
                 value={formData.piece}
                 onChange={(e) =>
                   setFormData({ ...formData, piece: e.target.value })
                 }
               />
             </div>
-            <button type="submit" class="btn btn-primary d-block mx-auto">
+
+            <div className="mb-3">
+              <label htmlFor="paymentType" className="form-label">
+                Ödeme Türü:
+              </label>
+              <select
+                className="form-select"
+                id="paymentType"
+                value={formData.paymentType}
+                onChange={(e) =>
+                  setFormData({
+                    ...formData,
+                    paymentType: e.target.value,
+                  })
+                }
+              >
+                <option value="nakit">Nakit</option>
+                <option value="visa">Visa</option>
+              </select>
+            </div>
+
+            <button type="submit" className="btn btn-primary d-block mx-auto">
               Kaydet
             </button>
           </form>

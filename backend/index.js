@@ -6,7 +6,7 @@ const database = require('./database.js');
 
 //routes
 const klassAkuRoute = require("./routes/klassAkus.js")
-const klassAkuKayitRoute = require("./routes/klassAkuKayit.js")
+const klassAkuKayitRoute = require("./routes/klassAkuSatim.js")
 
 dotenv.config();
 
