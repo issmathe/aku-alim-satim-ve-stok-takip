@@ -86,24 +86,13 @@ const KlasSatimGoster = () => {
         editedData
       );
       console.log("Güncelleme başarılı:", response.data);
-  
-      // Düzenleme sonrasında sadece gerekli state'leri güncelle
-      setKlassAkuData((prevData) => {
-        const updatedData = prevData.map((item) =>
-          item._id === editItemId ? { ...item, ...editedData } : item
-        );
-        return updatedData;
-      });
-  
-      // Veri güncellendikten sonra total sales'i ve modal'ı kapat
-      fetchTotalSales();
       setShowEditModal(false);
+      fetchData();
+      fetchTotalSales();
     } catch (error) {
       console.error("Veri güncelleme hatası:", error.message);
     }
   };
-  
-  
 
   return (
     <Container className="mt-5">
