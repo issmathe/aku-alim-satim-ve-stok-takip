@@ -7,7 +7,7 @@ function KlasSatimForm() {
     aku: "",
     name: "",
     piece: 0,
-    paymentType: "nakit", // Varsayılan olarak nakit seçili
+    paymentType: "nakit",
   });
   const [successMessage, setSuccessMessage] = useState("");
 
@@ -52,7 +52,8 @@ function KlasSatimForm() {
         }
       );
 
-      window.location.reload(); // Sayfayı yeniden yükle
+      // Yeni veriyi çekerek state'i güncelle
+      await fetchData();
     } catch (error) {
       console.error("Kategori oluşturulurken hata:", error);
     }
