@@ -24,7 +24,7 @@ const Header = () => {
               <Link to="/akuislemleri">Klas Akü İşlemleri</Link>
             </li>
             <li>
-              <Link to="/klassatım">Klas Akü Satım İşlemleri</Link>
+              <Link to="/klassatim">Klas Akü Satım İşlemleri</Link>
             </li>
           </ul>
         </nav>
