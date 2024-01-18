@@ -52,7 +52,7 @@ const KlasAku = () => {
           ))}
           <Link
             style={{ display: "block", textAlign: "center" }}
-            to="/klassatım"
+            to="/klassatim"
             className="btn btn-primary"
             onClick={handleSale}
           >
