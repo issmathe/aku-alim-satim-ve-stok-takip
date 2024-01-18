@@ -52,7 +52,7 @@ function KlasSatimForm() {
         }
       );
 
-      // window.location.reload(); // Sayfayı yeniden yükle
+      window.location.reload(); // Sayfayı yeniden yükle
     } catch (error) {
       console.error("Kategori oluşturulurken hata:", error);
     }
