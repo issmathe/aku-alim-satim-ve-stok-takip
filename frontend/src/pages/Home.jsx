@@ -4,6 +4,7 @@ import KlasAku from '../components/homeGosterilecekler/KlasAku.jsx'
 
 
 
+
 const Home = () => {
   return (
     <div >
