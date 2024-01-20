@@ -11,7 +11,10 @@ root.render(
     <Auth0Provider
       domain={process.env.REACT_APP_AUTH0_DOMAIN}
       clientId={process.env.REACT_APP_AUTH0_CLIENT}
-      redirectUri={window.location.origin}
+      // redirectUri kullanımı yerine authorizationParams.redirect_uri kullanımını tercih et
+      authorizationParams={{
+        redirect_uri: window.location.origin
+      }}
     >
       <BrowserRouter>
         <App />
