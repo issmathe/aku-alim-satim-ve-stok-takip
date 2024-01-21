@@ -8,6 +8,20 @@ import './header.css';
 const Header = () => {
   const { loginWithRedirect, logout, isLoading, isAuthenticated } = useAuth0();
 
+  const createDropdown = (menuItems, buttonText) => (
+    <Space direction="vertical">
+      <Space wrap>
+        <Dropdown menu={{ items: menuItems }} placement="bottomLeft">
+          <Button className="text-center btn dangerbtn btn-success">
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
+              {buttonText}
+            </div>
+          </Button>
+        </Dropdown>
+      </Space>
+    </Space>
+  );
+
   const klasAkuItems = [
     isAuthenticated && {
       key: '1',
@@ -40,6 +54,7 @@ const Header = () => {
       label: <Link to="/mutluaku/islem1">İnci Akü Satım İşlemleri</Link>,
     }
   ];
+
   const vartaAkuItems = [
     isAuthenticated && {
       key: '1',
@@ -50,6 +65,7 @@ const Header = () => {
       label: <Link to="/mutluaku/islem1">Varta Akü Satım İşlemleri</Link>,
     }
   ];
+
   const kraftAkuItems = [
     isAuthenticated && {
       key: '1',
@@ -60,6 +76,7 @@ const Header = () => {
       label: <Link to="/mutluaku/islem1">Kraft Akü Satım İşlemleri</Link>,
     }
   ];
+
   const handleLogout = () => {
     const confirmLogout = window.confirm('Çıkış yapmak istediğinize emin misiniz?');
     if (confirmLogout) {
@@ -81,69 +98,19 @@ const Header = () => {
               <Link to="/">ANASAYFA</Link>
             </li>
             <li>
-              <Space direction="vertical">
-                <Space wrap>
-                  <Dropdown menu={{ items: klasAkuItems }} placement="bottomLeft">
-                    <Button className="text-center btn dangerbtn btn-success">
-                      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
-                        Klas Akü
-                      </div>
-                    </Button>
-                  </Dropdown>
-                </Space>
-              </Space>
+              {createDropdown(klasAkuItems, 'Klas Akü')}
             </li>
             <li>
-              <Space direction="vertical">
-                <Space wrap>
-                  <Dropdown menu={{ items: mutluAkuItems }} placement="bottomLeft">
-                    <Button className="text-center btn dangerbtn btn-success">
-                      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
-                        Mutlu Akü
-                      </div>
-                    </Button>
-                  </Dropdown>
-                </Space>
-              </Space>
+              {createDropdown(mutluAkuItems, 'Mutlu Akü')}
             </li>
             <li>
-              <Space direction="vertical">
-                <Space wrap>
-                  <Dropdown menu={{ items: inciAkuItems }} placement="bottomLeft">
-                    <Button className="text-center btn dangerbtn btn-success">
-                      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
-                        İnci Akü
-                      </div>
-                    </Button>
-                  </Dropdown>
-                </Space>
-              </Space>
+              {createDropdown(inciAkuItems, 'İnci Akü')}
             </li>
             <li>
-              <Space direction="vertical">
-                <Space wrap>
-                  <Dropdown menu={{ items: vartaAkuItems }} placement="bottomLeft">
-                    <Button className="text-center btn dangerbtn btn-success">
-                      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
-                        Varta Akü
-                      </div>
-                    </Button>
-                  </Dropdown>
-                </Space>
-              </Space>
+              {createDropdown(vartaAkuItems, 'Varta Akü')}
             </li>
             <li>
-              <Space direction="vertical">
-                <Space wrap>
-                  <Dropdown menu={{ items: kraftAkuItems }} placement="bottomLeft">
-                    <Button className="text-center btn dangerbtn btn-success">
-                      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
-                      Kraft Akü
-                      </div>
-                    </Button>
-                  </Dropdown>
-                </Space>
-              </Space>
+              {createDropdown(kraftAkuItems, 'Kraft Akü')}
             </li>
           </ul>
         </nav>

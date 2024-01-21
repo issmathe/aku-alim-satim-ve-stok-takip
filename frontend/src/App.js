@@ -10,6 +10,8 @@ function App() {
       <Route path="/" element={<Home/>} />  
       <Route path="/akuislemleri" element={<AkuIslemleri/>} />  
       <Route path="/klassatim" element={<AkuSatim/>} /> 
+      <Route path="/mutluakuislemleri" element={<AkuIslemleri/>} /> 
+      <Route path="/mutlusatim" element={<AkuSatim/>} /> 
       </Routes>
   );
 }

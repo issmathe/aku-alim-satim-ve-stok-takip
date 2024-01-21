@@ -8,6 +8,9 @@ const database = require('./database.js');
 const klassAkuRoute = require("./routes/klassAkus.js")
 const klassAkuKayitRoute = require("./routes/klassAkuSatim.js")
 
+const mutluAkuRoute = require("./routes/mutluAku.js")
+const mutluAkuKayitRoute = require("./routes/mutluAkuSatim.js")
+
 dotenv.config();
 
 const app = express();
@@ -20,6 +23,10 @@ const PORT = process.env.PORT || 5000;
 //connect to the database
 app.use("/api", klassAkuRoute)
 app.use("/api/kayit", klassAkuKayitRoute)
+
+app.use("/api/mutlu", mutluAkuRoute)
+app.use("/api/mutlu/kayit", mutluAkuKayitRoute)
+
 
 app.listen(PORT, () => {
   database()

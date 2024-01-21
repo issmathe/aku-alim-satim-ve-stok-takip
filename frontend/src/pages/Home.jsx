@@ -6,12 +6,15 @@ const Home = () => {
     <div>
       <Header />
       <div
+        className="text-center text-warning pt-2"
         style={{
           height: "100vh",
           background: "#364d79",
+          padding: "20px", // Padding ekledim
+          boxSizing: "border-box", // Padding'in genişliği ve yüksekliği dahil olmasını sağlar
         }}
       >
-        <h2 className="text-center text-warning pt-2">HOŞGELDİNİZ</h2>{" "}
+        <h2 style={{ fontSize: "1.5rem", marginBottom: "20px" }}>HOŞGELDİNİZ</h2>{" "}
         <div
           style={{
             display: "flex",
@@ -20,7 +23,7 @@ const Home = () => {
           }}
         >
           <img
-            style={{ height: "550px" }}
+            style={{ maxWidth: "100%", height: "auto", maxHeight: "550px" }}
             src="https://th.bing.com/th/id/OIG3.b_AM18xh_tjl6zR5NYRA?pid=ImgGn"
             alt="Resim Açıklaması"
           />
