@@ -57,7 +57,7 @@ const MutluGoster = () => {
   const handleAddAkuClick = () => {
     setShowForm(!showForm);
   };
-
+ 
   return (
     <div className="container mt-5">
       <h1 style={{ fontSize: "30px" }} className="text-center">Mutlu Akü Stok Bilgisi</h1>
