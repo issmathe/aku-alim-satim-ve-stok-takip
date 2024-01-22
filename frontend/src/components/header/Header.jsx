@@ -25,33 +25,33 @@ const Header = () => {
   const klasAkuItems = [
     isAuthenticated && {
       key: '1',
-      label: <Link to="/akuislemleri">Klas Akü İşlemleri</Link>,
+      label: <Link to="/klasAkuIslemleri">Klas Akü İşlemleri</Link>,
     },
     isAuthenticated && {
       key: '2',
-      label: <Link to="/klassatim">Klas Akü Satım İşlemleri</Link>,
+      label: <Link to="/klasAkuSatim">Klas Akü Satım İşlemleri</Link>,
     },
   ];
 
   const mutluAkuItems = [
     isAuthenticated && {
       key: '1',
-      label: <Link to="/mutluaku">Mutlu Akü İşlemleri</Link>,
+      label: <Link to="/mutluAkuIslemleri">Mutlu Akü İşlemleri</Link>,
     },
     isAuthenticated && {
       key: '2',
-      label: <Link to="/mutluaku/islem1">Mutlu Akü Satım İşlemleri</Link>,
+      label: <Link to="/mutluAkuSatim">Mutlu Akü Satım İşlemleri</Link>,
     }
   ];
 
   const inciAkuItems = [
     isAuthenticated && {
       key: '1',
-      label: <Link to="/mutluaku">İnci Akü İşlemleri</Link>,
+      label: <Link to="/mutluakuislemleri">İnci Akü İşlemleri</Link>,
     },
     isAuthenticated && {
       key: '2',
-      label: <Link to="/mutluaku/islem1">İnci Akü Satım İşlemleri</Link>,
+      label: <Link to="/mutluaku/mutlusatim">İnci Akü Satım İşlemleri</Link>,
     }
   ];
 

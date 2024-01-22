@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Container, Table, Button, Modal, Form } from "react-bootstrap";
 
-const KlasSatimGoster = () => {
-  const [klassAkuData, setKlassAkuData] = useState([]);
+const MutluSatimGoster = () => {
+  const [MutlusAkuData, setMutlusAkuData] = useState([]);
   const [totalSales, setTotalSales] = useState(0);
   const [showEditModal, setShowEditModal] = useState(false);
   const [editItemId, setEditItemId] = useState("");
@@ -19,7 +19,7 @@ const KlasSatimGoster = () => {
       const response = await axios.get(
         process.env.REACT_APP_SERVER_URL + "/api/mutlu/kayit"
       );
-      setKlassAkuData(response.data);
+      setMutlusAkuData(response.data);
     } catch (error) {
       console.error("Veri çekiminde hata oluştu:", error.message);
     }
@@ -109,7 +109,7 @@ const KlasSatimGoster = () => {
           </tr>
         </thead>
         <tbody>
-          {klassAkuData.slice().reverse().map((item) => (
+          {MutlusAkuData.slice().reverse().map((item) => (
             <tr key={item._id}>
               <td>{new Date(item.createdAt).toLocaleString()}</td>
               <td>{item.name}</td>
@@ -211,4 +211,4 @@ const KlasSatimGoster = () => {
   );
 };
 
-export default KlasSatimGoster;
+export default MutluSatimGoster;

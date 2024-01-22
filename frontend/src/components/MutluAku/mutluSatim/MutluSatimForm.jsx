@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-function KlasSatimForm() {
-  const [klassAkuData, setKlassAkuData] = useState([]);
+function MutluSatimForm() {
+  const [MutlusAkuData, setMutlusAkuData] = useState([]);
   const [formData, setFormData] = useState({
     aku: "",
     name: "",
@@ -16,7 +16,7 @@ function KlasSatimForm() {
       const response = await axios.get(
         process.env.REACT_APP_SERVER_URL + "/api/mutlu"
       );
-      setKlassAkuData(response.data);
+      setMutlusAkuData(response.data);
     } catch (error) {
       console.error("Veri çekiminde hata oluştu:", error.message);
     }
@@ -28,7 +28,7 @@ function KlasSatimForm() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const existingAku = klassAkuData.find((item) => item.name === formData.aku);
+    const existingAku = MutlusAkuData.find((item) => item.name === formData.aku);
 
     try {
       const response = await axios.post(
@@ -62,7 +62,7 @@ function KlasSatimForm() {
     <div className="container mt-4">
       <div className="row justify-content-center">
         <div className="col-md-6">
-          <h2 className="text-center background">Klas Akü Satım İşlemleri</h2>
+          <h2 className="text-center background">Mutlu Akü Satım İşlemleri</h2>
 
           {successMessage && (
             <p className="alert alert-success">{successMessage}</p>
@@ -80,7 +80,7 @@ function KlasSatimForm() {
                 <option value="" disabled>
                   Sattığınız akü çeşidini seçin
                 </option>
-                {klassAkuData.map((item) => (
+                {MutlusAkuData.map((item) => (
                   <option key={item._id} value={item.name}>
                     {item.name}
                   </option>
@@ -150,4 +150,4 @@ function KlasSatimForm() {
   );
 }
 
-export default KlasSatimForm;
+export default MutluSatimForm;

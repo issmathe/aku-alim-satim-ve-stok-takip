@@ -19,7 +19,7 @@ function EditForm({ category, onSave, onCancel }) {
 
   return (
     <div>
-      <h3>Klas Akü Stok Bilgisi Güncelleme</h3>
+      <h3>Mutlu Akü Stok Bilgisi Güncelleme</h3>
       <form onSubmit={handleSave}>
         <div className="form-group">
           <label>Adet</label>

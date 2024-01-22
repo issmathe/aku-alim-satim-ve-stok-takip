@@ -1,17 +1,23 @@
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home.jsx"
-import AkuIslemleri from "./pages/AkuIslemleri.jsx";
-import AkuSatim from "./pages/AkuSatim.jsx";
+
+import KlasAkuIslemleri from "./pages/klasAkuPage/KlasAkuIslemleri.jsx";
+import KlasAkuSatim from "./pages/klasAkuPage/KlasAkuSatim.jsx";
+import MutluAkuIslemleri from "./pages/mutluAkuPage/MutluAkuIslemleri.jsx";
+import MutluAkuSatim from "./pages/mutluAkuPage/MutluAkuSatim.jsx";
+
 
 
 function App() {
   return (
       <Routes>
       <Route path="/" element={<Home/>} />  
-      <Route path="/akuislemleri" element={<AkuIslemleri/>} />  
-      <Route path="/klassatim" element={<AkuSatim/>} /> 
-      <Route path="/mutluakuislemleri" element={<AkuIslemleri/>} /> 
-      <Route path="/mutlusatim" element={<AkuSatim/>} /> 
+      <Route path="/klasAkuIslemleri" element={<KlasAkuIslemleri/>} /> 
+      <Route path="/klasAkuSatim" element={<KlasAkuSatim/>} /> 
+      <Route path="/mutluAkuIslemleri" element={<MutluAkuIslemleri/>} /> 
+      <Route path="/mutluAkuSatim" element={<MutluAkuSatim/>} /> 
+
+ 
       </Routes>
   );
 }

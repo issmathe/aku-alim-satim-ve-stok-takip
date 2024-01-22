@@ -1,9 +1,8 @@
-// KlasAkuEkle.js
 
 import React, { useState } from "react";
 import axios from "axios";
 
-function KlasAkuEkle({ handleAddAkuClick }) {
+function MutluAkuEkle({ handleAddAkuClick }) {
   const [formData, setFormData] = useState({
     title: "",
     name: "",
@@ -33,7 +32,7 @@ function KlasAkuEkle({ handleAddAkuClick }) {
     <div className="container mt-4">
       <div className="row justify-content-center">
         <div className="col-md-6">
-          <h2 className="background">Klas Akü Ürün Ekleme</h2>
+          <h2 className="background">Mutlu Akü Ürün Ekleme</h2>
           {successMessage && (
             <p className="alert alert-success">{successMessage}</p>
           )}
@@ -118,4 +117,4 @@ function KlasAkuEkle({ handleAddAkuClick }) {
   );
 }
 
-export default KlasAkuEkle;
+export default MutluAkuEkle;

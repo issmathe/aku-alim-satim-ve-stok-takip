@@ -1,20 +1,18 @@
-// KlasGoster.js
-
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import KlasAkuEkle from "./KlasAkuEkle";
-import KlasDuzenleme from "./KlasDuzenleme";
+import MutluDuzenleme from "../mutluEkle/MutluDuzenleme";
 import { Button, ListGroup, ListGroupItem } from "react-bootstrap";
+import MutluAkuEkle from "./MutluAkuEkle";
 
-const KlasGoster = () => {
-  const [klassAkuData, setKlassAkuData] = useState([]);
+const MutluGoster = () => {
+  const [MutlusAkuData, setMutlusAkuData] = useState([]);
   const [editCategory, setEditCategory] = useState(null);
   const [showForm, setShowForm] = useState(false);
 
   const fetchData = async () => {
     try {
       const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api/mutlu`);
-      setKlassAkuData(response.data);
+      setMutlusAkuData(response.data);
     } catch (error) {
       console.error("Veri çekiminde hata oluştu:", error.message);
     }
@@ -62,9 +60,9 @@ const KlasGoster = () => {
 
   return (
     <div className="container mt-5">
-      <h1 style={{ fontSize: "30px" }} className="text-center">Klass Akü Stok Bilgisi</h1>
+      <h1 style={{ fontSize: "30px" }} className="text-center">Mutlu Akü Stok Bilgisi</h1>
       <ListGroup>
-        {klassAkuData.map((item) => (
+        {MutlusAkuData.map((item) => (
           <ListGroupItem
             key={item._id}
             className="d-flex justify-content-between align-items-center"
@@ -98,7 +96,7 @@ const KlasGoster = () => {
         ))}
       </ListGroup>
       {editCategory && (
-        <KlasDuzenleme
+        <MutluDuzenleme
           category={editCategory}
           onSave={handleSaveEdit}
           onCancel={handleCancelEdit}
@@ -107,7 +105,7 @@ const KlasGoster = () => {
       <br />
       <div className="d-flex justify-content-center">
         {showForm ? (
-          <KlasAkuEkle handleAddAkuClick={handleAddAkuClick} />
+          <MutluAkuEkle handleAddAkuClick={handleAddAkuClick} />
         ) : (
           <button
             className="btn btn-success"
@@ -121,4 +119,4 @@ const KlasGoster = () => {
   );
 };
 
-export default KlasGoster;
+export default MutluGoster;
