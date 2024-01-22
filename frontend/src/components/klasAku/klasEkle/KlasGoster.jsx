@@ -62,7 +62,7 @@ const KlasGoster = () => {
 
   return (
     <div className="container mt-5">
-      <h1 style={{ fontSize: "30px" }} className="text-center">Klass Akü Stok Bilgisi</h1>
+      <h1 style={{ fontSize: "30px" }} className="text-center">Klass Akü Stok Bilgisi:</h1>
       <ListGroup>
         {klassAkuData.map((item) => (
           <ListGroupItem
