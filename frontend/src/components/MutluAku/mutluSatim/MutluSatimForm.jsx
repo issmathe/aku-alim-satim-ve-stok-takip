@@ -87,7 +87,6 @@ function MutluSatimForm() {
                 ))}
               </select>
             </div>
-
             <div className="mb-3">
               <label htmlFor="name" className="form-label">
                 Alıcı İsim Soyisim:
