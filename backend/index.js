@@ -11,6 +11,9 @@ const klassAkuKayitRoute = require("./routes/klassAkuSatim.js")
 const mutluAkuRoute = require("./routes/mutluAku.js")
 const mutluAkuKayitRoute = require("./routes/mutluAkuSatim.js")
 
+const inciAkuRoute = require("./routes/inciAku.js")
+const inciAkuKayitRoute = require("./routes/inciAkuSatim.js")
+
 dotenv.config();
 
 const app = express();
@@ -27,6 +30,8 @@ app.use("/api/kayit", klassAkuKayitRoute)
 app.use("/api/mutlu", mutluAkuRoute)
 app.use("/api/mutlu/kayit", mutluAkuKayitRoute)
 
+app.use("/api/inci", inciAkuRoute)
+app.use("/api/inci/kayit", inciAkuKayitRoute)
 
 app.listen(PORT, () => {
   database()

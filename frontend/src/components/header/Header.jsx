@@ -47,11 +47,11 @@ const Header = () => {
   const inciAkuItems = [
     isAuthenticated && {
       key: '1',
-      label: <Link to="/">İnci Akü İşlemleri</Link>,
+      label: <Link to="/inciAkuIslemleri">İnci Akü İşlemleri</Link>,
     },
     isAuthenticated && {
       key: '2',
-      label: <Link to="/">İnci Akü Satım İşlemleri</Link>,
+      label: <Link to="/inciAkuSatim">İnci Akü Satım İşlemleri</Link>,
     }
   ];
 

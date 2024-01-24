@@ -1,9 +1,9 @@
-// KlasAkuEkle.js
+// InciAkuEkle.js
 
 import React, { useState } from "react";
 import axios from "axios";
 
-function KlasAkuEkle({ handleAddAkuClick }) {
+function InciAkuEkle({ handleAddAkuClick }) {
   const [formData, setFormData] = useState({
     title: "",
     name: "",
@@ -17,7 +17,7 @@ function KlasAkuEkle({ handleAddAkuClick }) {
 
     try {
       const response = await axios.post(
-        process.env.REACT_APP_SERVER_URL + "/api",
+        process.env.REACT_APP_SERVER_URL + "/api/inci",
         formData
       );
       console.log("Product created:", response.data);
@@ -30,10 +30,10 @@ function KlasAkuEkle({ handleAddAkuClick }) {
   };
 
   return (
-    <div  className="container mt-4">
+    <div className="container mt-4">
       <div className="row justify-content-center">
         <div className="col-md-6">
-          <h2 className="background">Klas Akü Ürün Ekleme</h2>
+          <h2 className="background">İnci Akü Ürün Ekleme</h2>
           {successMessage && (
             <p className="alert alert-success">{successMessage}</p>
           )}
@@ -118,4 +118,4 @@ function KlasAkuEkle({ handleAddAkuClick }) {
   );
 }
 
-export default KlasAkuEkle;
+export default InciAkuEkle;
