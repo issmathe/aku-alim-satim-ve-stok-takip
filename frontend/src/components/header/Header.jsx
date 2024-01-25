@@ -58,22 +58,22 @@ const Header = () => {
   const vartaAkuItems = [
     isAuthenticated && {
       key: '1',
-      label: <Link to="/">Varta Akü İşlemleri</Link>,
+      label: <Link to="/vartaAkuIslemleri">Varta Akü İşlemleri</Link>,
     },
     isAuthenticated && {
       key: '2',
-      label: <Link to="/">Varta Akü Satım İşlemleri</Link>,
+      label: <Link to="/vartaAkuSatim">Varta Akü Satım İşlemleri</Link>,
     }
   ];
 
   const kraftAkuItems = [
     isAuthenticated && {
       key: '1',
-      label: <Link to="/">Kraft Akü İşlemleri</Link>,
+      label: <Link to="/kraftAkuIslemleri">Kraft Akü İşlemleri</Link>,
     },
     isAuthenticated && {
       key: '2',
-      label: <Link to="/">Kraft Akü Satım İşlemleri</Link>,
+      label: <Link to="/kraftAkuSatim">Kraft Akü Satım İşlemleri</Link>,
     }
   ];
 

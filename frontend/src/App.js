@@ -7,6 +7,11 @@ import MutluAkuIslemleri from "./pages/mutluAkuPage/MutluAkuIslemleri.jsx"
 import MutluAkuSatim from "./pages/mutluAkuPage/MutluAkuSatim.jsx"
 import InciAkuIslemleri from "./pages/inciAkuPage/InciAkuIslemleri.jsx"
 import InciAkuSatim from "./pages/inciAkuPage/InciAkuSatim.jsx"
+import VartaAkuSatim from "./pages/vartaAkuPage/VartaAkuSatim.jsx";
+import VartaAkuIslemleri from "./pages/vartaAkuPage/VartaAkuIslemleri.jsx";
+import KraftAkuIslemleri from "./pages/kraftAkuPage/KraftAkuIslemleri.jsx"
+import KraftAkuSatim from "./pages/kraftAkuPage/KraftAkuSatim.jsx"
+
 function App() {
   return (
       <Routes>
@@ -19,6 +24,13 @@ function App() {
 
       <Route path="/inciAkuIslemleri" element={<InciAkuIslemleri/>} /> 
       <Route path="/inciAkuSatim" element={<InciAkuSatim/>} />
+
+      <Route path="/vartaAkuIslemleri" element={<VartaAkuIslemleri/>} /> 
+      <Route path="/vartaAkuSatim" element={<VartaAkuSatim/>} />
+
+      
+      <Route path="/kraftAkuIslemleri" element={<KraftAkuIslemleri/>} /> 
+      <Route path="/kraftAkuSatim" element={<KraftAkuSatim/>} />
       
       </Routes>
   );
