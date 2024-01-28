@@ -14,7 +14,7 @@ function KlasSatimForm() {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        process.env.REACT_APP_SERVER_URL + "/api"
+        process.env.REACT_APP_SERVER_URL + "/api/klas"
       );
       setKlassAkuData(response.data);
     } catch (error) {
@@ -32,7 +32,7 @@ function KlasSatimForm() {
 
     try {
       const response = await axios.post(
-        process.env.REACT_APP_SERVER_URL + "/api/kayit",
+        process.env.REACT_APP_SERVER_URL + "/api/klas/kayit",
         formData
       );
 
@@ -46,7 +46,7 @@ function KlasSatimForm() {
       });
 
       await axios.put(
-        `${process.env.REACT_APP_SERVER_URL}/api/${existingAku._id}`,
+        `${process.env.REACT_APP_SERVER_URL}/api/klas/${existingAku._id}`,
         {
           piece: existingAku.piece - 1,
         }

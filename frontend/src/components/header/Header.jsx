@@ -86,7 +86,7 @@ const Header = () => {
 
   return (
     <div>
-      <header>
+      <header style={{height:"80px"}}>
         <div className="d-flex">
           <div className="logoContainer">
             <HavaDurumu />

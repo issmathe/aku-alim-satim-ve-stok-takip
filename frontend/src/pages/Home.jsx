@@ -1,5 +1,11 @@
 import React from "react";
 import Header from "../components/header/Header.jsx";
+import MutluAku from "../components/homeGosterilecekler/MutluAku.jsx";
+import InciAku from "../components/homeGosterilecekler/InciAku.jsx";
+import KlasAku from "../components/homeGosterilecekler/KlasAku.jsx";
+import VartaAku from "../components/homeGosterilecekler/VartaAku.jsx";
+
+import KraftAku from "../components/homeGosterilecekler/KraftAku.jsx";
 
 const Home = () => {
   return (
@@ -10,23 +16,16 @@ const Home = () => {
         style={{
           height: "100vh",
           background: "#364d79",
-          padding: "20px", // Padding ekledim
-          boxSizing: "border-box", // Padding'in genişliği ve yüksekliği dahil olmasını sağlar
+          padding: "20px",
+          boxSizing: "border-box",
         }}
       >
-        <h2 style={{ fontSize: "1.5rem", marginBottom: "20px" }}>HOŞGELDİNİZ</h2>{" "}
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <img
-            style={{ maxWidth: "100%", height: "auto", maxHeight: "550px" }}
-            src="https://th.bing.com/th/id/OIG3.b_AM18xh_tjl6zR5NYRA?pid=ImgGn"
-            alt="Resim Açıklaması"
-          />
+        <div style={{ display: "flex", gap: "20px" }}>
+          <KlasAku />
+          <MutluAku />
+          <InciAku />
+          <VartaAku/>
+          <KraftAku />
         </div>
       </div>
     </div>

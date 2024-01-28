@@ -33,8 +33,8 @@ app.use(express.urlencoded({ limit: "30mb", extended: true }));
 const PORT = process.env.PORT || 5000;
 
 //connect to the database
-app.use("/api", klassAkuRoute)
-app.use("/api/kayit", klassAkuKayitRoute)
+app.use("/api/klas", klassAkuRoute)
+app.use("/api/klas/kayit", klassAkuKayitRoute)
 
 app.use("/api/mutlu", mutluAkuRoute)
 app.use("/api/mutlu/kayit", mutluAkuKayitRoute)

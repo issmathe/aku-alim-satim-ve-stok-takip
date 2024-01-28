@@ -2,13 +2,13 @@ import React, { useState, useEffect } from "react";
 import { Card, Space } from "antd";
 import axios from "axios";
 
-const KlasAku = () => {
+const MutluAku = () => {
   const [klassAkuData, setKlassAkuData] = useState([]);
 
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        process.env.REACT_APP_SERVER_URL + "/api/klas"
+        process.env.REACT_APP_SERVER_URL + "/api/mutlu"
       );
       setKlassAkuData(response.data);
     } catch (error) {
@@ -32,7 +32,7 @@ const KlasAku = () => {
           >
             <button type="button" className="btn btn-primary">
               <a style={{ color: "white" }} href="/mutluAkuSatim">
-              Klas Akü Satışı Yap
+                Mutlu Akü Satışı Yap
               </a>
             </button>
             <hr style={{padding:"2px", color: "black" }} />
@@ -61,4 +61,4 @@ const KlasAku = () => {
   );
 };
 
-export default KlasAku;
+export default MutluAku;

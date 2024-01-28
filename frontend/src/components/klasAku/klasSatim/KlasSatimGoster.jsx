@@ -17,7 +17,7 @@ const KlasSatimGoster = () => {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        process.env.REACT_APP_SERVER_URL + "/api/kayit"
+        process.env.REACT_APP_SERVER_URL + "/api/klas/kayit"
       );
       setKlassAkuData(response.data);
     } catch (error) {
@@ -33,7 +33,7 @@ const KlasSatimGoster = () => {
   const fetchTotalSales = async () => {
     try {
       const response = await axios.get(
-        process.env.REACT_APP_SERVER_URL + "/api/kayit/total"
+        process.env.REACT_APP_SERVER_URL + "/api/klas/kayit/total"
       );
       setTotalSales(response.data.totalSum);
     } catch (error) {
@@ -52,7 +52,7 @@ const KlasSatimGoster = () => {
 
       if (userConfirmed) {
         await axios.delete(
-          `${process.env.REACT_APP_SERVER_URL}/api/kayit/${itemId}`
+          `${process.env.REACT_APP_SERVER_URL}/api/klas/kayit/${itemId}`
         );
         fetchData();
         fetchTotalSales();
@@ -82,7 +82,7 @@ const KlasSatimGoster = () => {
   const handleSaveEdit = async () => {
     try {
       const response = await axios.put(
-        `${process.env.REACT_APP_SERVER_URL}/api/kayit/${editItemId}`,
+        `${process.env.REACT_APP_SERVER_URL}/api/klas/kayit/${editItemId}`,
         editedData
       );
       console.log("Güncelleme başarılı:", response.data);

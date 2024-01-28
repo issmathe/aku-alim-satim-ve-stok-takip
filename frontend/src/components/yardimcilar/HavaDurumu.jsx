@@ -29,8 +29,8 @@ const HavaDurumu = () => {
   return (
     <div className="hava-durumu">
       {weatherData.main && (
-        <div >
-          <p>Hava: {roundedTemperature} °C</p>
+        <div style={{display:"flex"}} >
+          <p style={{marginRight:"15px"}}>Hava: {roundedTemperature}°</p>
           <p>{weatherData.weather[0].description}</p>
         </div>
       )}

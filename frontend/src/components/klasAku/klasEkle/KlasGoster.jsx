@@ -13,7 +13,7 @@ const KlasGoster = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api`);
+      const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api/klas`);
       setKlassAkuData(response.data);
     } catch (error) {
       console.error("Veri çekiminde hata oluştu:", error.message);
@@ -28,7 +28,7 @@ const KlasGoster = () => {
     try {
       const userConfirmed = window.confirm("Bu öğeyi silmek istediğinizden emin misiniz?");
       if (userConfirmed) {
-        await axios.delete(`${process.env.REACT_APP_SERVER_URL}/api/${itemId}`);
+        await axios.delete(`${process.env.REACT_APP_SERVER_URL}/api/klas/${itemId}`);
         fetchData();
       } else {
         console.log("Silme işlemi iptal edildi.");
@@ -48,7 +48,7 @@ const KlasGoster = () => {
 
   const handleSaveEdit = async (editedCategory) => {
     try {
-      await axios.put(`${process.env.REACT_APP_SERVER_URL}/api/${editedCategory._id}`, editedCategory);
+      await axios.put(`${process.env.REACT_APP_SERVER_URL}/api/klas/${editedCategory._id}`, editedCategory);
       setEditCategory(null);
       fetchData();
     } catch (error) {

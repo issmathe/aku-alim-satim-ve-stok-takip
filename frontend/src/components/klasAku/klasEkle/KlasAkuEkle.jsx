@@ -17,7 +17,7 @@ function KlasAkuEkle({ handleAddAkuClick }) {
 
     try {
       const response = await axios.post(
-        process.env.REACT_APP_SERVER_URL + "/api",
+        process.env.REACT_APP_SERVER_URL + "/api/klas",
         formData
       );
       console.log("Product created:", response.data);
