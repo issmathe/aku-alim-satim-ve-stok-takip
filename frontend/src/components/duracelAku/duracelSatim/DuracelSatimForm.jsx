@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-function KraftSatimForm() {
-  const [KraftsAkuData, setKraftsAkuData] = useState([]);
+function DuracelSatimForm() {
+  const [DuracelsAkuData, setDuracelsAkuData] = useState([]);
   const [formData, setFormData] = useState({
     aku: "",
     name: "",
@@ -14,9 +14,9 @@ function KraftSatimForm() {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        process.env.REACT_APP_SERVER_URL + "/api/kraft"
+        process.env.REACT_APP_SERVER_URL + "/api/duracel"
       );
-      setKraftsAkuData(response.data);
+      setDuracelsAkuData(response.data);
     } catch (error) {
       console.error("Veri çekiminde hata oluştu:", error.message);
     }
@@ -28,11 +28,11 @@ function KraftSatimForm() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const existingAku = KraftsAkuData.find((item) => item.name === formData.aku);
+    const existingAku = DuracelsAkuData.find((item) => item.name === formData.aku);
 
     try {
       const response = await axios.post(
-        process.env.REACT_APP_SERVER_URL + "/api/kraft/kayit",
+        process.env.REACT_APP_SERVER_URL + "/api/duracel/kayit",
         formData
       );
 
@@ -46,7 +46,7 @@ function KraftSatimForm() {
       });
 
       await axios.put(
-        `${process.env.REACT_APP_SERVER_URL}/api/kraft/${existingAku._id}`,
+        `${process.env.REACT_APP_SERVER_URL}/api/duracel/${existingAku._id}`,
         {
           piece: existingAku.piece - 1,
         }
@@ -62,7 +62,7 @@ function KraftSatimForm() {
     <div className="container mt-4">
       <div className="row justify-content-center">
         <div className="col-md-6">
-          <h2 className="text-center background">Kraft Akü Satım İşlemleri</h2>
+          <h2 className="text-center background">Duracel Akü Satım İşlemleri</h2>
 
           {successMessage && (
             <p className="alert alert-success">{successMessage}</p>
@@ -80,7 +80,7 @@ function KraftSatimForm() {
                 <option value="" disabled>
                   Sattığınız akü çeşidini seçin
                 </option>
-                {KraftsAkuData.map((item) => (
+                {DuracelsAkuData.map((item) => (
                   <option key={item._id} value={item.name}>
                     {item.name}
                   </option>
@@ -150,4 +150,4 @@ function KraftSatimForm() {
   );
 }
 
-export default KraftSatimForm;
+export default DuracelSatimForm;

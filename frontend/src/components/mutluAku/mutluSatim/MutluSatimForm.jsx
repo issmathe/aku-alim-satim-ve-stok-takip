@@ -136,6 +136,7 @@ function MutluSatimForm() {
               >
                 <option value="nakit">Nakit</option>
                 <option value="visa">Visa</option>
+                <option value="veresiye">Veresiye</option>
               </select>
             </div>
 

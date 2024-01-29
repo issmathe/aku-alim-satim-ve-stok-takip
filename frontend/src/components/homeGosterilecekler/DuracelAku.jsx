@@ -2,13 +2,13 @@ import React, { useState, useEffect } from "react";
 import { Card, Space } from "antd";
 import axios from "axios";
 
-const KraftAku = () => {
+const DuracelAku = () => {
   const [klassAkuData, setKlassAkuData] = useState([]);
 
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        process.env.REACT_APP_SERVER_URL + "/api/kraft"
+        process.env.REACT_APP_SERVER_URL + "/api/duracel"
       );
       setKlassAkuData(response.data);
     } catch (error) {
@@ -25,7 +25,6 @@ const KraftAku = () => {
       <div>
         <Space direction="vertical" size={16}>
           <Card
-
             style={{
               width: 225,
               fontSize: "12px",
@@ -33,8 +32,8 @@ const KraftAku = () => {
             }}
           >
             <button type="button" className="btn btn-primary">
-              <a style={{ color: "white" }} href="/mutluAkuSatim">
-              Kraft Akü Satışı Yap
+              <a style={{ color: "white" }} href="/DuracelAkuSatim">
+                Duracel Akü Satışı Yap
               </a>
             </button>
             <hr style={{padding:"2px", color: "black" }} />
@@ -63,4 +62,4 @@ const KraftAku = () => {
   );
 };
 
-export default KraftAku;
+export default DuracelAku;

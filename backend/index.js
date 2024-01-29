@@ -20,6 +20,9 @@ const vartaAkuKayitRoute = require("./routes/vartaAkuSatim.js")
 const kraftAkuRoute = require("./routes/kraftAku.js")
 const kraftAkuKayitRoute = require("./routes/kraftAkuSatim.js")
 
+const duracelAkuRoute = require("./routes/duracelAku.js")
+const duracelAkuKayitRoute = require("./routes/duracelAkuSatim.js")
+
 
 
 
@@ -47,6 +50,10 @@ app.use("/api/varta/kayit", vartaAkuKayitRoute)
 
 app.use("/api/kraft", kraftAkuRoute)
 app.use("/api/kraft/kayit", kraftAkuKayitRoute)
+
+app.use("/api/duracel", duracelAkuRoute)
+app.use("/api/duracel/kayit", duracelAkuKayitRoute)
+
 
 
 app.listen(PORT, () => {

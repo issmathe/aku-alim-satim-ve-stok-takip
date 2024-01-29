@@ -22,12 +22,13 @@ const KlasAku = () => {
 
   return (
     <div>
-      <div>
+      <div >
         <Space direction="vertical" size={16}>
           <Card
             style={{
               width: 225,
               fontSize: "12px",
+              background: "#cfc0b4"
             }}
           >
             <button type="button" className="btn btn-primary">

@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const VartaAkuSatimSchema = mongoose.Schema(
+const DuracelAkuSatimSchema = mongoose.Schema(
   {
     aku: { type: String, required: true },
     name: { type: String, required: true },
@@ -10,6 +10,6 @@ const VartaAkuSatimSchema = mongoose.Schema(
   { timestamps: true }
 );
 
-const VartaAkuSatim = mongoose.model("VartaAkuKayits", VartaAkuSatimSchema); // istenenler mongodb de açılan alan
+const DuracelAkuSatim = mongoose.model("DuracelAkuKayits", DuracelAkuSatimSchema); // istenenler mongodb de açılan alan
 
-module.exports = VartaAkuSatim ;
+module.exports = DuracelAkuSatim ;

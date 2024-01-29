@@ -4,6 +4,7 @@ import MutluAku from "../components/homeGosterilecekler/MutluAku.jsx";
 import InciAku from "../components/homeGosterilecekler/InciAku.jsx";
 import KlasAku from "../components/homeGosterilecekler/KlasAku.jsx";
 import VartaAku from "../components/homeGosterilecekler/VartaAku.jsx";
+import DuracelAku from "../components/homeGosterilecekler/DuracelAku.jsx";
 
 import KraftAku from "../components/homeGosterilecekler/KraftAku.jsx";
 
@@ -16,7 +17,7 @@ const Home = () => {
         style={{
           height: "100vh",
           background: "#364d79",
-          padding: "20px",
+          padding: "10px",
           boxSizing: "border-box",
         }}
       >
@@ -26,6 +27,7 @@ const Home = () => {
           <InciAku />
           <VartaAku/>
           <KraftAku />
+          <DuracelAku />
         </div>
       </div>
     </div>

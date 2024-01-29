@@ -29,6 +29,7 @@ const InciAku = () => {
             style={{
               width: 225,
               fontSize: "12px",
+              background: "#cfc0b4"
             }}
           >
             <button type="button" className="btn btn-primary">

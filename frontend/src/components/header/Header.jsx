@@ -77,6 +77,28 @@ const Header = () => {
     }
   ];
 
+  const islemler = [
+    isAuthenticated && {
+      key: '1',
+      label: <Link to="/veresiye">Veresiye Listem</Link>,
+    },
+    isAuthenticated && {
+      key: '2',
+      label: <Link to="/">İstatistik</Link>,
+    }
+  ];
+
+  const duracelAkuItems = [
+    isAuthenticated && {
+      key: '1',
+      label: <Link to="/duracelAkuIslemleri">Duracel Akü İşlemleri</Link>,
+    },
+    isAuthenticated && {
+      key: '2',
+      label: <Link to="/duracelAkuSatim">Duracel Akü Satım İşlemleri</Link>,
+    }
+  ];
+
   const handleLogout = () => {
     const confirmLogout = window.confirm('Çıkış yapmak istediğinize emin misiniz?');
     if (confirmLogout) {
@@ -111,6 +133,12 @@ const Header = () => {
             </li>
             <li>
               {createDropdown(kraftAkuItems, 'Kraft Akü')}
+            </li>
+            <li>
+              {createDropdown(duracelAkuItems, 'Duracel Akü')}
+            </li>
+            <li>
+              {createDropdown(islemler, 'İşlemler')}
             </li>
           </ul>
         </nav>

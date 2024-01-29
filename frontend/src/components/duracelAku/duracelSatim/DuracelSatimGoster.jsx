@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Container, Table, Button, Modal, Form } from "react-bootstrap";
 
-const KraftSatimGoster = () => {
-  const [KraftsAkuData, setKraftsAkuData] = useState([]);
+const DuracelSatimGoster = () => {
+  const [DuracelsAkuData, setDuracelsAkuData] = useState([]);
   const [totalSales, setTotalSales] = useState(0);
   const [showEditModal, setShowEditModal] = useState(false);
   const [editItemId, setEditItemId] = useState("");
@@ -17,9 +17,9 @@ const KraftSatimGoster = () => {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        process.env.REACT_APP_SERVER_URL + "/api/kraft/kayit"
+        process.env.REACT_APP_SERVER_URL + "/api/duracel/kayit"
       );
-      setKraftsAkuData(response.data);
+      setDuracelsAkuData(response.data);
     } catch (error) {
       console.error("Veri çekiminde hata oluştu:", error.message);
     }
@@ -33,7 +33,7 @@ const KraftSatimGoster = () => {
   const fetchTotalSales = async () => {
     try {
       const response = await axios.get(
-        process.env.REACT_APP_SERVER_URL + "/api/kraft/kayit/total"
+        process.env.REACT_APP_SERVER_URL + "/api/duracel/kayit/total"
       );
       setTotalSales(response.data.totalSum);
     } catch (error) {
@@ -52,7 +52,7 @@ const KraftSatimGoster = () => {
 
       if (userConfirmed) {
         await axios.delete(
-          `${process.env.REACT_APP_SERVER_URL}/api/kraft/kayit/${itemId}`
+          `${process.env.REACT_APP_SERVER_URL}/api/duracel/kayit/${itemId}`
         );
         fetchData();
         fetchTotalSales();
@@ -82,7 +82,7 @@ const KraftSatimGoster = () => {
   const handleSaveEdit = async () => {
     try {
       const response = await axios.put(
-        `${process.env.REACT_APP_SERVER_URL}/api/kraft/kayit/${editItemId}`,
+        `${process.env.REACT_APP_SERVER_URL}/api/duracel/kayit/${editItemId}`,
         editedData
       );
       console.log("Güncelleme başarılı:", response.data);
@@ -109,7 +109,7 @@ const KraftSatimGoster = () => {
           </tr>
         </thead>
         <tbody>
-          {KraftsAkuData.slice().reverse().map((item) => (
+          {DuracelsAkuData.slice().reverse().map((item) => (
             <tr key={item._id}>
               <td>{new Date(item.createdAt).toLocaleString()}</td>
               <td>{item.name}</td>
@@ -212,4 +212,4 @@ const KraftSatimGoster = () => {
   );
 };
 
-export default KraftSatimGoster;
+export default DuracelSatimGoster;
