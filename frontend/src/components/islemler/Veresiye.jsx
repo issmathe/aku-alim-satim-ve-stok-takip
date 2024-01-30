@@ -41,7 +41,7 @@ const Veresiye = () => {
           axios.put(`${process.env.REACT_APP_SERVER_URL}/api/inci/kayit/${id}`, { paymentType: "nakit" }),
           axios.put(`${process.env.REACT_APP_SERVER_URL}/api/varta/kayit/${id}`, { paymentType: "nakit" }),
           axios.put(`${process.env.REACT_APP_SERVER_URL}/api/kraft/kayit/${id}`, { paymentType: "nakit" }),
-          axios.put(`${process.env.REACT_APP_SERVER_URL}/api/varta/kayit/${id}`, { paymentType: "nakit" }),
+          axios.put(`${process.env.REACT_APP_SERVER_URL}/api/duracel/kayit/${id}`, { paymentType: "nakit" }),
         ];
         
 
