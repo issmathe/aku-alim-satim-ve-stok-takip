@@ -8,7 +8,7 @@ const Veresiye = () => {
   useEffect(() => {
     const fetchVeresiyeData = async () => {
       try {
-        const responses = await Promise.all([
+        const responses = await axios.all([
           axios.get(`${process.env.REACT_APP_SERVER_URL}/api/klas/kayit`),
           axios.get(`${process.env.REACT_APP_SERVER_URL}/api/mutlu/kayit`),
           axios.get(`${process.env.REACT_APP_SERVER_URL}/api/inci/kayit`),
@@ -41,10 +41,10 @@ const Veresiye = () => {
           axios.put(`${process.env.REACT_APP_SERVER_URL}/api/inci/kayit/${id}`, { paymentType: "nakit" }),
           axios.put(`${process.env.REACT_APP_SERVER_URL}/api/varta/kayit/${id}`, { paymentType: "nakit" }),
           axios.put(`${process.env.REACT_APP_SERVER_URL}/api/kraft/kayit/${id}`, { paymentType: "nakit" }),
-          axios.put(`${process.env.REACT_APP_SERVER_URL}/api/duracel/kayit/${id}`, { paymentType: "nakit" }),
+          axios.put(`${process.env.REACT_APP_SERVER_URL}/api/varta/kayit/${id}`, { paymentType: "nakit" }),
         ];
         
-        await Promise.all(updateRequests);
+
 
         setVeresiyeData((prevData) =>
           prevData.map((item) =>
@@ -52,7 +52,7 @@ const Veresiye = () => {
           )
           
         );
-        window.location.reload(); // Doğru kullanım
+        window.location.reload(updateRequests); // Doğru kullanım
 
       } else {
         console.log("İşlem iptal edildi.");
