@@ -16,6 +16,11 @@ body {
 }
 
 /* Header Stili */
+@media only screen and (max-width: 768px) {
+    .header {
+      height: 350px !important; 
+    }
+  }
 header {
     background-color: #333;
     color: #fff;
@@ -108,7 +113,11 @@ nav a {
     text-align: left;
     margin-right: auto;
 }
-
+@media only screen and (max-width: 768px) {
+    .logoContainer {
+      display: none;
+    }
+  }
 /* Hava durumu içindeki paragraflar arasına boşluk ekleyin */
 .hava-durumu p {
     margin-bottom: 8px;

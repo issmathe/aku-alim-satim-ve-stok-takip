@@ -3,6 +3,7 @@ import { Card, Space } from "antd";
 import axios from "axios";
 
 const VartaAku = () => {
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [klassAkuData, setKlassAkuData] = useState([]);
 
   const fetchData = async () => {
@@ -18,14 +19,23 @@ const VartaAku = () => {
 
   useEffect(() => {
     fetchData();
+
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
   }, []);
 
   return (
     <div>
-      <div>
+      {windowWidth > 600 ? (
         <Space direction="vertical" size={16}>
           <Card
-
             style={{
               width: 225,
               fontSize: "12px",
@@ -34,10 +44,10 @@ const VartaAku = () => {
           >
             <button type="button" className="btn btn-primary">
               <a style={{ color: "white" }} href="/mutluAkuSatim">
-              Varta Akü Satışı Yap
+                Varta Akü Satışı Yap
               </a>
             </button>
-            <hr style={{padding:"2px", color: "black" }} />
+            <hr style={{ padding: "2px", color: "black" }} />
             {klassAkuData.map((item) => (
               <div
                 style={{ fontSize: "14px", maxHeight: "100px" }}
@@ -53,12 +63,18 @@ const VartaAku = () => {
                 <span style={{ marginLeft: "10px", fontSize: "14px" }}>
                   Stok: <span style={{ color: "red" }}>{item.piece}</span>
                 </span>
-                <hr style={{padding:"1px", color: "black" }} />
+                <hr style={{ padding: "1px", color: "black" }} />
               </div>
             ))}
           </Card>
         </Space>
-      </div>
+      ) : (
+        <button type="button" className="btn btn-primary">
+          <a style={{ color: "white" }} href="/mutluAkuSatim">
+            Varta Akü Satışı Yap
+          </a>
+        </button>
+      )}
     </div>
   );
 };
