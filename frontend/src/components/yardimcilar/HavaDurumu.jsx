@@ -31,7 +31,7 @@ const HavaDurumu = () => {
       {weatherData.main && (
         <div style={{display:"flex"}} >
           <p style={{marginRight:"15px"}}>Hava: {roundedTemperature}°</p>
-          <p>{weatherData.weather[0].description}</p>
+          <p style={{fontSize:"20px"}}>{weatherData.weather[0].description}</p>
         </div>
       )}
     </div>

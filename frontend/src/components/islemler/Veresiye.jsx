@@ -13,6 +13,8 @@ const Veresiye = () => {
           axios.get(`${process.env.REACT_APP_SERVER_URL}/api/mutlu/kayit`),
           axios.get(`${process.env.REACT_APP_SERVER_URL}/api/inci/kayit`),
           axios.get(`${process.env.REACT_APP_SERVER_URL}/api/varta/kayit`),
+          axios.get(`${process.env.REACT_APP_SERVER_URL}/api/kraft/kayit`),
+          axios.get(`${process.env.REACT_APP_SERVER_URL}/api/duracel/kayit`)
         ]);
 
         const veresiyeRecords = responses
@@ -38,6 +40,8 @@ const Veresiye = () => {
           axios.put(`${process.env.REACT_APP_SERVER_URL}/api/mutlu/kayit/${id}`, { paymentType: "nakit" }),
           axios.put(`${process.env.REACT_APP_SERVER_URL}/api/inci/kayit/${id}`, { paymentType: "nakit" }),
           axios.put(`${process.env.REACT_APP_SERVER_URL}/api/varta/kayit/${id}`, { paymentType: "nakit" }),
+          axios.put(`${process.env.REACT_APP_SERVER_URL}/api/kraft/kayit/${id}`, { paymentType: "nakit" }),
+          axios.put(`${process.env.REACT_APP_SERVER_URL}/api/duracel/kayit/${id}`, { paymentType: "nakit" }),
         ];
         
         await Promise.all(updateRequests);
@@ -48,7 +52,7 @@ const Veresiye = () => {
           )
           
         );
-
+        window.location.reload(); // Doğru kullanım
 
       } else {
         console.log("İşlem iptal edildi.");
@@ -57,7 +61,7 @@ const Veresiye = () => {
     } catch (error) {
       console.error("Ödeme işleminde hata oluştu:", error.message);
     }
-
+    
   };
 
   return (
