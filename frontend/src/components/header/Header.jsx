@@ -87,7 +87,7 @@ const Header = () => {
   ];
   const islemler = [
     { key: "1", label: <Link to="/veresiye">Veresiye Listem</Link> },
-    { key: "2", label: <Link to="/">İstatistik</Link> },
+    { key: "2", label: <Link to="/sonuc">Akü İstatistik</Link> },
   ];
 
 

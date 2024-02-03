@@ -14,6 +14,8 @@ import KraftAkuSatim from "./pages/kraftAkuPage/KraftAkuSatim.jsx"
 import DuracelAkuIslemleri from "./pages/duracelAkuPage/duracelAkuIslemleri.jsx";
 import DuracelAkuSatim from "./pages/duracelAkuPage/duracelAkuSatim.jsx";
 import VeresiyePage from "./pages/islemlerPage/VeresiyePage.jsx";
+import SonucPage from "./pages/islemlerPage/SonucPage.jsx";
+
 
 function App() {
   return (
@@ -39,6 +41,8 @@ function App() {
       <Route path="/duracelAkuSatim" element={<DuracelAkuSatim/>} />
 
       <Route path="/veresiye" element={<VeresiyePage/>} />
+      <Route path="/sonuc" element={<SonucPage/>} />
+
       
       </Routes>
   );
