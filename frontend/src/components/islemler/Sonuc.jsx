@@ -1,14 +1,21 @@
-// Sonuc.jsx
-
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Card } from 'antd';
+import { PieChart } from '@mui/x-charts/PieChart';
+import { styled } from '@mui/system';
 
 const { Meta } = Card;
 
+const StyledCard = styled(Card)({
+  backgroundColor: 'yellow',
+  width: 200,
+  margin: 20,
+  color: 'red',
+});
+
 const Sonuc = () => {
   const [akuAdet, setAkuAdet] = useState([]);
-  
+
   const fetchAkuAdet = async () => {
     try {
       const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api/klas/kayit`);
@@ -41,24 +48,56 @@ const Sonuc = () => {
     'KLAS 225 AH AKÜ',
   ];
 
+  // Her bir akuTur için belirlenen özel renkler
+  const akuTurRenkleri = {
+    'KLAS 60 AH AKÜ': '#140f07', // Yeşil
+    'KLAS 60 AH DAR': '#def84c', // Açık Yeşil
+    'KLAS 70 AH EFB': '#cfc5ff', // Lime Yeşili
+    'KLAS 72 AH AKÜ': '#f2c08c', // Yeşil Sarı
+    'KLAS 90 AH AKÜ': '#522e09', // Medium Spring Green
+    'KLAS 100 AH AKÜ': '#ff597a', // Chartreuse
+    'KLAS 105 AH AKÜ': '#00ffd9', // Spring Green
+    'KLAS 135 AH AKÜ': '#807970', // Yellow Green
+    'KLAS 150 AH AKÜ': '#144b82', // Olive Drab
+    'KLAS 180 AH AKÜ': '#006af0', // Dark Olive Green
+    'KLAS 225 AH AKÜ': '#228B22', // Forest Green
+  };
+
+  // Sütun grafiği için verileri hazırla
+  const chartData = akuTurleri.map((akuTur, index) => ({
+    category: akuTur,
+    value: countAdet(akuTur),
+  }));
+
+  const pieChartData = chartData.map((item) => ({
+    label: item.category,
+    value: item.value,
+    color: akuTurRenkleri[item.category] || '#000000', // Belirlenen renkleri ata veya varsayılan renk siyah (#000000)
+  }));
+
   return (
     <div style={{ padding: '20px' }}>
-      <h2 style={{ textAlign: 'center',color:"blue", }}>Toplam Satılan Klas Akü Adeti: {akuAdet.length}</h2>
-      <div style={{ backgroundColor:"pink",display: 'flex', justifyContent: 'space-around', flexWrap: 'wrap' }}>
+      <h2 style={{ textAlign: 'center', color: 'blue' }}>Toplam Satılan Klas Akü Adeti: {akuAdet.length}</h2>
+      <div style={{ backgroundColor: 'pink', display: 'flex', justifyContent: 'space-around', flexWrap: 'wrap' }}>
         {akuTurleri.map((akuTur, index) => (
-          <Card
-            key={index}
-            style={{backgroundColor:"yellow", width: 200, margin: 20, color: 'red' }}
-            // veya className kullanarak
-            // className="custom-card-style"
-          >
+          <StyledCard key={index}>
             <Meta
               title={` ${akuTur}`}
               description={<span style={{ color: 'blue', textAlign: 'center', display: 'block' }}>{countAdet(akuTur)}</span>}
             />
-          </Card>
+          </StyledCard>
         ))}
       </div>
+      <PieChart
+        series={[
+          {
+            startAngle: -90,
+            endAngle: 90,
+            data: pieChartData,
+          },
+        ]}
+        height={300}
+      />
     </div>
   );
 };
