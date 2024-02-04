@@ -33,7 +33,6 @@ const Veresiye = () => {
   const markAsPaid = async (id) => {
     try {
       const confirmPayment = window.confirm("Ödendi olarak işaretle?");
-      window.location.reload(); // Doğru kullanım
       if (confirmPayment) {
         const updateRequests = [
           axios.put(`${process.env.REACT_APP_SERVER_URL}/api/klas/kayit/${id}`, { paymentType: "nakit" }),
