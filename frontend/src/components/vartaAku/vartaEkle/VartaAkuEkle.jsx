@@ -1,13 +1,11 @@
-
 import React, { useState } from "react";
 import axios from "axios";
 
 function VartaAkuEkle({ handleAddAkuClick }) {
   const [formData, setFormData] = useState({
-    title: "",
     name: "",
-    piece: 0,
-    price: 0,
+    piece: "",
+    price: "",
   });
   const [successMessage, setSuccessMessage] = useState("");
 
@@ -16,12 +14,12 @@ function VartaAkuEkle({ handleAddAkuClick }) {
 
     try {
       const response = await axios.post(
-        process.env.REACT_APP_SERVER_URL + "/api/Varta",
+        process.env.REACT_APP_SERVER_URL + "/api/varta",
         formData
       );
       console.log("Product created:", response.data);
       setSuccessMessage("Kayıt başarılı");
-      setFormData({ title: "", name: "", piece: 0, price: 0 });
+      setFormData({ name: "", piece: 0, price: 0 });
       window.location.reload(); // Sayfayı yenile
     } catch (error) {
       console.error("Error creating product:", error);
@@ -38,34 +36,33 @@ function VartaAkuEkle({ handleAddAkuClick }) {
           )}
           <form onSubmit={handleSubmit}>
             <div className="mb-3">
-              <label htmlFor="title" className="form-label">
-                Başlık:
-              </label>
-              <input
-                type="text"
-                className="form-control"
-                id="title"
-                placeholder="Başlık"
-                value={formData.title}
-                onChange={(e) =>
-                  setFormData({ ...formData, title: e.target.value })
-                }
-              />
-            </div>
-            <div className="mb-3">
               <label htmlFor="name" className="form-label">
                 Ürün İsmi:
               </label>
-              <input
-                type="text"
-                className="form-control"
-                id="name"
-                placeholder="Ürün İsmi"
+              <select
+                className="form-select"
                 value={formData.name}
                 onChange={(e) =>
                   setFormData({ ...formData, name: e.target.value })
                 }
-              />
+              >
+                <option value="" disabled>
+                  Ürün İsmi Seçin
+                </option>
+                {[
+                  "74 AH AKÜ",
+                  "60 AH EFB",
+                  "70 AH EFB",
+                  "70 AH AGM",
+                  "105 AH AKÜ",
+                  "180 AH AKÜ",
+                  "240 AH EFB",
+                ].map((option) => (
+                  <option key={option} value={option}>
+                    {option}
+                  </option>
+                ))}
+              </select>
             </div>
             <div className="mb-3">
               <label htmlFor="piece" className="form-label">

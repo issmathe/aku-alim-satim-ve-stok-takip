@@ -24,19 +24,7 @@ const KlasGoster = () => {
     fetchData();
   }, []);
 
-  const handleDelete = async (itemId) => {
-    try {
-      const userConfirmed = window.confirm("Bu öğeyi silmek istediğinizden emin misiniz?");
-      if (userConfirmed) {
-        await axios.delete(`${process.env.REACT_APP_SERVER_URL}/api/klas/${itemId}`);
-        fetchData();
-      } else {
-        console.log("Silme işlemi iptal edildi.");
-      }
-    } catch (error) {
-      console.error("Veri silme hatası:", error.message);
-    }
-  };
+
 
   const handleEdit = (category) => {
     setEditCategory(category);
@@ -85,13 +73,6 @@ const KlasGoster = () => {
                 onClick={() => handleEdit(item)}
               >
                 Düzenle
-              </Button>
-              <Button
-                variant="danger"
-                className="ml-2"
-                onClick={() => handleDelete(item._id)}
-              >
-                Sil
               </Button>
             </div>
           </ListGroupItem>
