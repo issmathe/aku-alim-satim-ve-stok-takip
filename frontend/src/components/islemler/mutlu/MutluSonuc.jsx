@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Card } from "antd";
 import { styled } from "@mui/system";
-import Grafik from "./Grafik";
+import MutluGrafik from "./MutluGrafik";
 
 const { Meta } = Card;
 
@@ -13,13 +13,13 @@ const StyledCard = styled(Card)({
   color: "red",
 });
 
-const Sonuc = () => {
+const MutluSonuc = () => {
   const [akuAdet, setAkuAdet] = useState([]);
 
   const fetchAkuAdet = async () => {
     try {
       const response = await axios.get(
-        `${process.env.REACT_APP_SERVER_URL}/api/klas/kayit`
+        `${process.env.REACT_APP_SERVER_URL}/api/mutlu/kayit`
       );
       setAkuAdet(response.data);
     } catch (error) {
@@ -38,17 +38,11 @@ const Sonuc = () => {
   };
   
   const akuTurleri = [
-    "KLAS 60 AH AKÜ",
-    "KLAS 60 AH DAR",
-    "KLAS 70 AH EFB",
-    "KLAS 72 AH AKÜ",
-    "KLAS 90 AH AKÜ",
-    "KLAS 100 AH AKÜ",
-    "KLAS 105 AH AKÜ",
-    "KLAS 135 AH AKÜ",
-    "KLAS 150 AH AKÜ",
-    "KLAS 180 AH AKÜ",
-    "KLAS 225 AH AKÜ",
+    "60 AH AKÜ",
+    "72 AH AKÜ",
+    "105 AH AKÜ",
+    "135 AH AKÜ",
+    "180 AH AKÜ",
   ];
 
 
@@ -84,9 +78,9 @@ const Sonuc = () => {
           </StyledCard>
         ))}
       </div>
-      <Grafik/>
+      <MutluGrafik/>
     </div>
   );
 };
 
-export default Sonuc;
+export default MutluSonuc;

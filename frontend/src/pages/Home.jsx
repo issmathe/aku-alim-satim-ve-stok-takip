@@ -15,7 +15,7 @@ const Home = () => {
       <div
         className="text-center text-warning pt-2"
         style={{
-          height: "100vh",
+          height: "100%",
           background: "#364d79",
           padding: "10px",
           boxSizing: "border-box",

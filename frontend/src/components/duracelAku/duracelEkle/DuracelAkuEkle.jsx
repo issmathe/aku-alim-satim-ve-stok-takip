@@ -1,13 +1,11 @@
-
 import React, { useState } from "react";
 import axios from "axios";
 
 function DuracelAkuEkle({ handleAddAkuClick }) {
   const [formData, setFormData] = useState({
-    title: "",
     name: "",
-    piece: 0,
-    price: 0,
+    piece: "",
+    price: "",
   });
   const [successMessage, setSuccessMessage] = useState("");
 
@@ -21,7 +19,7 @@ function DuracelAkuEkle({ handleAddAkuClick }) {
       );
       console.log("Product created:", response.data);
       setSuccessMessage("Kayıt başarılı");
-      setFormData({ title: "", name: "", piece: 0, price: 0 });
+      setFormData({ name: "", piece: 0, price: 0 });
       window.location.reload(); // Sayfayı yenile
     } catch (error) {
       console.error("Error creating product:", error);
@@ -38,34 +36,32 @@ function DuracelAkuEkle({ handleAddAkuClick }) {
           )}
           <form onSubmit={handleSubmit}>
             <div className="mb-3">
-              <label htmlFor="title" className="form-label">
-                Başlık:
-              </label>
-              <input
-                type="text"
-                className="form-control"
-                id="title"
-                placeholder="Başlık"
-                value={formData.title}
-                onChange={(e) =>
-                  setFormData({ ...formData, title: e.target.value })
-                }
-              />
-            </div>
-            <div className="mb-3">
               <label htmlFor="name" className="form-label">
                 Ürün İsmi:
               </label>
-              <input
-                type="text"
-                className="form-control"
-                id="name"
-                placeholder="Ürün İsmi"
+              <select
+                className="form-select"
                 value={formData.name}
                 onChange={(e) =>
                   setFormData({ ...formData, name: e.target.value })
                 }
-              />
+              >
+                <option value="" disabled>
+                  Ürün İsmi Seçin
+                </option>
+                {[
+                  "45 DAR AKÜ ",
+                  "60 AH AKÜ ",
+                  "70 EFB AKÜ",
+                  "70 AGM AKÜ",
+                  "72 AH AKÜ",
+                  "92 AGM AKÜ",
+                ].map((option) => (
+                  <option key={option} value={option}>
+                    {option}
+                  </option>
+                ))}
+              </select>
             </div>
             <div className="mb-3">
               <label htmlFor="piece" className="form-label">
