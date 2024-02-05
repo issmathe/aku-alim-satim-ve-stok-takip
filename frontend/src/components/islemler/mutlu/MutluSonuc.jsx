@@ -49,7 +49,7 @@ const MutluSonuc = () => {
   return (
     <div style={{ padding: "10px" }}>
       <h2 style={{ textAlign: "center", color: "#144b82" }}>
-        Toplam Satılan Klas Akü Adeti: {akuAdet.length}
+        Toplam Satılan Mutlu Akü Adeti: {akuAdet.length}
       </h2>
       <div
         style={{
