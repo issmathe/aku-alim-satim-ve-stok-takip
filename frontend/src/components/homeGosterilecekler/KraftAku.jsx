@@ -43,7 +43,7 @@ const KraftAku = () => {
             }}
           >
             <button type="button" className="btn btn-primary">
-              <a style={{ color: "white" }} href="/mutluAkuSatim">
+              <a style={{ color: "white" }} href="/kraftAkuSatim">
                 Kraft Akü Satışı Yap
               </a>
             </button>
@@ -70,7 +70,7 @@ const KraftAku = () => {
         </Space>
       ) : (
         <button type="button" className="btn btn-primary">
-          <a style={{ color: "white" }} href="/mutluAkuSatim">
+          <a style={{ color: "white" }} href="/kraftAkuSatim">
             Kraft Akü Satışı Yap
           </a>
         </button>

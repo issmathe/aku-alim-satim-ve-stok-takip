@@ -2,7 +2,7 @@ import React, { useState, useEffect, useMemo, useCallback } from "react";
 import axios from "axios";
 import { Card } from "antd";
 import { styled } from "@mui/system";
-import Grafik from "./Grafik";
+import Grafik from "./KlasGrafik";
 import moment from 'moment';
 
 const { Meta } = Card;
@@ -14,7 +14,7 @@ const StyledCard = styled(Card)({
   color: "red",
 });
 
-const Sonuc = () => {
+const KlasSonuc = () => {
   const [akuAdet, setAkuAdet] = useState([]);
   const baslangicTarihi = "2024-01-01";
   const haftaSayisi = 52;
@@ -155,4 +155,4 @@ const Sonuc = () => {
   );
 };
 
-export default Sonuc;
+export default KlasSonuc;

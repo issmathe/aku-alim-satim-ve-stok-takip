@@ -62,7 +62,7 @@ function InciSatimForm() {
     <div className="container mt-4">
       <div className="row justify-content-center">
         <div className="col-md-6">
-          <h2 className="text-center background">Inci Akü Satım İşlemleri</h2>
+          <h2 className="text-center background">İnci Akü Satım İşlemleri</h2>
 
           {successMessage && (
             <p className="alert alert-success">{successMessage}</p>

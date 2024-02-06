@@ -4,7 +4,7 @@ import { PieChart } from "@mui/x-charts/PieChart";
 
 
 
-const Grafik = () => {
+const KlasGrafik = () => {
   const [akuAdet, setAkuAdet] = useState([]);
 
   const fetchAkuAdet = async () => {
@@ -84,4 +84,4 @@ const Grafik = () => {
   );
 };
 
-export default Grafik;
+export default KlasGrafik;

@@ -43,7 +43,7 @@ const VartaAku = () => {
             }}
           >
             <button type="button" className="btn btn-primary">
-              <a style={{ color: "white" }} href="/mutluAkuSatim">
+              <a style={{ color: "white" }} href="/vartaAkuSatim">
                 Varta Akü Satışı Yap
               </a>
             </button>
@@ -70,7 +70,7 @@ const VartaAku = () => {
         </Space>
       ) : (
         <button type="button" className="btn btn-primary">
-          <a style={{ color: "white" }} href="/mutluAkuSatim">
+          <a style={{ color: "white" }} href="/vartaAkuSatim">
             Varta Akü Satışı Yap
           </a>
         </button>

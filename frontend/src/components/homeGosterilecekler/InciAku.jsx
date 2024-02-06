@@ -43,7 +43,7 @@ const InciAku = () => {
             }}
           >
             <button type="button" className="btn btn-primary">
-              <a style={{ color: "white" }} href="/mutluAkuSatim">
+              <a style={{ color: "white" }} href="/inciAkuSatim">
                 İnci Akü Satışı Yap
               </a>
             </button>
@@ -70,7 +70,7 @@ const InciAku = () => {
         </Space>
       ) : (
         <button type="button" className="btn btn-primary">
-          <a style={{ color: "white" }} href="/mutluAkuSatim">
+          <a style={{ color: "white" }} href="/inciAkuSatim">
             İnci Akü Satışı Yap
           </a>
         </button>
