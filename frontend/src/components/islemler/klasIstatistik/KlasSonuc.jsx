@@ -2,8 +2,9 @@ import React, { useState, useEffect, useMemo } from "react";
 import axios from "axios";
 import { Button, Card } from "antd";
 import { styled } from "@mui/system";
-import Grafik from "./KlasGrafik";
 import KlasHaftalik from "./KlasHaftalik";
+import KlasAylik from "./KlasAylik";
+import KlasGrafik from "./KlasGrafik";
 
 const { Meta } = Card;
 
@@ -52,15 +53,30 @@ const KlasSonuc = () => {
   const countAdet = (akuTur) =>
     akuAdet.filter((item) => item.aku === akuTur).length;
 
-  //button
-  const [isLoadingA, setIsLoadingA] = useState(false);
-  const [isLoadingB, setIsLoadingB] = useState(false);
+  // Button states
+  const [isGrafikLoading, setIsGrafikLoading] = useState(false);
+  const [isHaftalikLoading, setIsHaftalikLoading] = useState(false);
+  const [isAylikLoading, setIsAylikLoading] = useState(false);
+
+  // Button click handlers
   const grafikGor = () => {
-    setIsLoadingA(!isLoadingA);
+    setIsGrafikLoading(!isGrafikLoading);
+    setIsHaftalikLoading(false);
+    setIsAylikLoading(false);
   };
+
   const haftalikGor = () => {
-    setIsLoadingB(!isLoadingB);
+    setIsHaftalikLoading(!isHaftalikLoading);
+    setIsGrafikLoading(false);
+    setIsAylikLoading(false);
   };
+
+  const aylikGor = () => {
+    setIsAylikLoading(!isAylikLoading);
+    setIsGrafikLoading(false);
+    setIsHaftalikLoading(false);
+  };
+
   return (
     <div style={{ padding: "10px" }}>
       <h2 style={{ textAlign: "center", color: "#144b82" }}>
@@ -94,12 +110,21 @@ const KlasSonuc = () => {
         ))}
       </div>
       <hr />
-      <div style={{gap:"35px"}}>
-        <Button onClick={grafikGor}>Grafik Olarak Göster</Button>
-        {isLoadingA && <Grafik />}
-        <Button onClick={haftalikGor}>Haftalık Olarak Göster</Button>
-        {isLoadingB && <KlasHaftalik />}
+      <div style={{ display: "flex", justifyContent: "center", gap: "20px" }}>
+        <Button type="primary" onClick={grafikGor}>
+          Grafik Olarak Göster
+        </Button>
+        <Button type="primary" onClick={haftalikGor}>
+          Haftalık Olarak Göster
+        </Button>
+        <Button type="primary" onClick={aylikGor}>
+          Aylık Olarak Göster
+        </Button>
       </div>
+      <br />
+      <div>{isAylikLoading && <KlasAylik />}</div>
+      <div>{isGrafikLoading && <KlasGrafik />}</div>
+      <div>{isHaftalikLoading && <KlasHaftalik />}</div>
     </div>
   );
 };

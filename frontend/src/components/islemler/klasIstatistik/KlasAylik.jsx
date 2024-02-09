@@ -3,11 +3,9 @@ import moment from 'moment';
 import 'moment/locale/tr'; // Türkçe dil desteği
 import axios from "axios";
 
-const KlasAylar = () => {
+const KlasAylik = () => {
   const [aylikSayilar, setAylikSayilar] = useState([]);
-
-  const baslangicTarihi = "2024-01-01";
-  const haftaSayisi = 52;
+  const [monthlyTotal, setMonthlyTotal] = useState([]);
 
   const akuTurleri = useMemo(() => [
     "KLAS 60 AH AKÜ",
@@ -23,29 +21,41 @@ const KlasAylar = () => {
     "KLAS 225 AH AKÜ",
   ], []);
 
-  const fetchAylikSayilar = async () => {
-    try {
-      const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api/klas/kayit`);
-      const yeniAylikSayilar = Array.from({ length: 12 }, () => Array(akuTurleri.length).fill(0));
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api/klas/kayit`);
+        const yeniAylikSayilar = Array.from({ length: 12 }, () => Array(akuTurleri.length).fill(0));
 
-      response.data.forEach((item) => {
-        const ayIndex = moment(item.satisTarihi).month();
-        const akuTurIndex = akuTurleri.indexOf(item.aku);
+        response.data.forEach((item) => {
+          const ayIndex = moment(item.satisTarihi).month();
+          const akuTurIndex = akuTurleri.indexOf(item.aku);
 
-        if (ayIndex >= 0 && ayIndex < 12 && akuTurIndex !== -1) {
-          yeniAylikSayilar[ayIndex][akuTurIndex] += 1;
-        }
-      });
+          if (ayIndex >= 0 && ayIndex < 12 && akuTurIndex !== -1) {
+            yeniAylikSayilar[ayIndex][akuTurIndex] += 1;
+          }
+        });
 
-      setAylikSayilar(yeniAylikSayilar);
-    } catch (error) {
-      console.error("Veri getirme hatası:", error);
-    }
-  };
+        setAylikSayilar(yeniAylikSayilar);
+      } catch (error) {
+        console.error("Veri getirme hatası:", error);
+      }
+    };
+
+    fetchData();
+  }, [akuTurleri]);
 
   useEffect(() => {
-    fetchAylikSayilar();
-  }, []);
+    const monthlyTotal = Array(12).fill(0);
+
+    aylikSayilar.forEach((ay, ayIndex) => {
+      ay.forEach((sayi, sayiIndex) => {
+        monthlyTotal[ayIndex] += sayi;
+      });
+    });
+
+    setMonthlyTotal(monthlyTotal);
+  }, [aylikSayilar]);
 
   return (
     <div>
@@ -59,6 +69,7 @@ const KlasAylar = () => {
                 {akuTur}
               </th>
             ))}
+            <th style={{ border: "1px solid #ddd", padding: "8px" }}>Toplam</th>
           </tr>
         </thead>
         <tbody>
@@ -72,6 +83,9 @@ const KlasAylar = () => {
                   {sayi}
                 </td>
               ))}
+              <td style={{ border: "1px solid #ddd", padding: "8px" }}>
+                {monthlyTotal[ayIndex]}
+              </td>
             </tr>
           ))}
         </tbody>
@@ -80,4 +94,4 @@ const KlasAylar = () => {
   );
 };
 
-export default KlasAylar;
+export default KlasAylik;

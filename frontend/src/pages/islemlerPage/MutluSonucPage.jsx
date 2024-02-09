@@ -6,7 +6,7 @@ const MutluSonucPage = () => {
   return (
     <div>
         <Header/>
-        <MutluSonuc/>
+      <MutluSonuc/>
     </div>
   )
 }
