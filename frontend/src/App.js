@@ -22,6 +22,7 @@ import KraftSonucPage from "./pages/islemlerPage/KraftSonucPage.jsx";
 import DuracelSonucPage from "./pages/islemlerPage/DuracelSonucPage.jsx";
 import EuroreparAkuIslemleri from "./pages/euroreparAkuPage/EuroreparAkuIslemleri.jsx";
 import EuroreparAkuSatim from "./pages/euroreparAkuPage/EuroreparAkuSatim.jsx";
+import EuroreparSonucPage from "./pages/islemlerPage/EuroreparSonucPage.jsx";
 
 
 
@@ -59,7 +60,7 @@ function App() {
       <Route path="/vartaSonuc" element={<VartaSonucPage/>} />
       <Route path="/kraftSonuc" element={<KraftSonucPage/>} />
       <Route path="/duracelSonuc" element={<DuracelSonucPage/>} />
-
+      <Route path="/euroreparSonuc" element={<EuroreparSonucPage/>} />
       
       </Routes>
   );

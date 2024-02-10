@@ -111,6 +111,7 @@ const Header = () => {
     { key: "4", label: <Link to="/vartaSonuc">Varta Akü İstatistik</Link> },
     { key: "5", label: <Link to="/kraftSonuc">Kraft Akü İstatistik</Link> },
     { key: "6", label: <Link to="/duracelSonuc">Duracel Akü İstatistik</Link> },
+    { key: "7", label: <Link to="/euroreparSonuc">Eurorepar Akü İstatistik</Link> },
 
   ];
 
