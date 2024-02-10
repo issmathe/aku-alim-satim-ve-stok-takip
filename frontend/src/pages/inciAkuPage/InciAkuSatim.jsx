@@ -9,7 +9,7 @@ const MutluAkuSatim = () => {
     <div>
         <Header/>
         <InciSatimForm/>
-        <InciSatimGoster/>
+        <InciSatimGoster/> 
     </div>
   )
 }
