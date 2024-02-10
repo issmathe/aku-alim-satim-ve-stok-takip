@@ -2,9 +2,9 @@ import React, { useState, useEffect, useMemo } from "react";
 import axios from "axios";
 import { Button, Card } from "antd";
 import { styled } from "@mui/system";
-import MutluHaftalik from "./MutluHaftalik";
-import MutluAylik from "./MutluAylik";
-import MutluGrafik from "./MutluGrafik";
+import DuracelHaftalik from "./DuracelHaftalik";
+import DuracelAylik from "./DuracelAylik";
+import DuracelGrafik from "./DuracelGrafik";
 
 const { Meta } = Card;
 
@@ -15,16 +15,17 @@ const StyledCard = styled(Card)({
   color: "red",
 });
 
-const MutluSonuc = () => {
+const DuracelSonuc = () => {
   const [akuAdet, setAkuAdet] = useState([]);
 
   const akuTurleri = useMemo(
     () => [
-      "60 AH AKÜ",
+      "45 DAR AKÜ ",
+      "60 AH AKÜ ",
+      "70 EFB AKÜ",
+      "70 AGM AKÜ",
       "72 AH AKÜ",
-      "105 AH AKÜ",
-      "135 AH AKÜ",
-      "180 AH AKÜ",
+      "92 AGM AKÜ",
     ],
     []
   );
@@ -33,7 +34,7 @@ const MutluSonuc = () => {
     const fetchAkuAdetAndCalculateTable = async () => {
       try {
         const response = await axios.get(
-          `${process.env.REACT_APP_SERVER_URL}/api/mutlu/kayit`
+          `${process.env.REACT_APP_SERVER_URL}/api/Duracel/kayit`
         );
         setAkuAdet(response.data);
       } catch (error) {
@@ -74,7 +75,7 @@ const MutluSonuc = () => {
   return (
     <div style={{ padding: "10px" }}>
       <h2 style={{ textAlign: "center", color: "#144b82" }}>
-        Toplam Satılan Mutlu Akü Adeti: {akuAdet.length}
+        Toplam Satılan Duracel Akü Adeti: {akuAdet.length}
       </h2>
       <div
         style={{
@@ -116,11 +117,11 @@ const MutluSonuc = () => {
         </Button>
       </div>
       <br />
-      <div>{isAylikLoading && <MutluAylik />}</div>
-      <div>{isGrafikLoading && <MutluGrafik />}</div>
-      <div>{isHaftalikLoading && <MutluHaftalik />}</div>
+      <div>{isAylikLoading && <DuracelAylik />}</div>
+      <div>{isGrafikLoading && <DuracelGrafik />}</div>
+      <div>{isHaftalikLoading && <DuracelHaftalik />}</div>
     </div>
   );
 };
 
-export default MutluSonuc;
+export default DuracelSonuc;

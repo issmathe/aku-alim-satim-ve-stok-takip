@@ -16,6 +16,10 @@ import DuracelAkuSatim from "./pages/duracelAkuPage/duracelAkuSatim.jsx";
 import VeresiyePage from "./pages/islemlerPage/VeresiyePage.jsx";
 import KlasSonucPage from "./pages/islemlerPage/KlasSonucPage.jsx";
 import MutluSonucPage from "./pages/islemlerPage/MutluSonucPage.jsx";
+import InciSonucPage from "./pages/islemlerPage/InciSonucPage.jsx";
+import VartaSonucPage from "./pages/islemlerPage/VartaSonucPage.jsx";
+import KraftSonucPage from "./pages/islemlerPage/KraftSonucPage.jsx";
+import DuracelSonucPage from "./pages/islemlerPage/DuracelSonucPage.jsx";
 
 
 
@@ -46,6 +50,10 @@ function App() {
 
       <Route path="/klasSonuc" element={<KlasSonucPage/>} />
       <Route path="/mutluSonuc" element={<MutluSonucPage/>} />
+      <Route path="/inciSonuc" element={<InciSonucPage/>} />
+      <Route path="/vartaSonuc" element={<VartaSonucPage/>} />
+      <Route path="/kraftSonuc" element={<KraftSonucPage/>} />
+      <Route path="/duracelSonuc" element={<DuracelSonucPage/>} />
 
       
       </Routes>

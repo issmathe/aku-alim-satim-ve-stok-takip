@@ -2,9 +2,9 @@ import React, { useState, useEffect, useMemo } from "react";
 import axios from "axios";
 import { Button, Card } from "antd";
 import { styled } from "@mui/system";
-import MutluHaftalik from "./MutluHaftalik";
-import MutluAylik from "./MutluAylik";
-import MutluGrafik from "./MutluGrafik";
+import VartaHaftalik from "./VartaHaftalik";
+import VartaAylik from "./VartaAylik";
+import VartaGrafik from "./VartaGrafik";
 
 const { Meta } = Card;
 
@@ -15,16 +15,18 @@ const StyledCard = styled(Card)({
   color: "red",
 });
 
-const MutluSonuc = () => {
+const VartaSonuc = () => {
   const [akuAdet, setAkuAdet] = useState([]);
 
   const akuTurleri = useMemo(
     () => [
-      "60 AH AKÜ",
-      "72 AH AKÜ",
+      "74 AH AKÜ",
+      "60 AH EFB",
+      "70 AH EFB",
+      "70 AH AGM",
       "105 AH AKÜ",
-      "135 AH AKÜ",
       "180 AH AKÜ",
+      "240 AH EFB",
     ],
     []
   );
@@ -33,7 +35,7 @@ const MutluSonuc = () => {
     const fetchAkuAdetAndCalculateTable = async () => {
       try {
         const response = await axios.get(
-          `${process.env.REACT_APP_SERVER_URL}/api/mutlu/kayit`
+          `${process.env.REACT_APP_SERVER_URL}/api/varta/kayit`
         );
         setAkuAdet(response.data);
       } catch (error) {
@@ -74,7 +76,7 @@ const MutluSonuc = () => {
   return (
     <div style={{ padding: "10px" }}>
       <h2 style={{ textAlign: "center", color: "#144b82" }}>
-        Toplam Satılan Mutlu Akü Adeti: {akuAdet.length}
+        Toplam Satılan Varta Akü Adeti: {akuAdet.length}
       </h2>
       <div
         style={{
@@ -116,11 +118,11 @@ const MutluSonuc = () => {
         </Button>
       </div>
       <br />
-      <div>{isAylikLoading && <MutluAylik />}</div>
-      <div>{isGrafikLoading && <MutluGrafik />}</div>
-      <div>{isHaftalikLoading && <MutluHaftalik />}</div>
+      <div>{isAylikLoading && <VartaAylik />}</div>
+      <div>{isGrafikLoading && <VartaGrafik />}</div>
+      <div>{isHaftalikLoading && <VartaHaftalik />}</div>
     </div>
   );
 };
 
-export default MutluSonuc;
+export default VartaSonuc;

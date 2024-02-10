@@ -3,12 +3,15 @@ import moment from 'moment';
 import 'moment/locale/tr'; // Türkçe dil desteği
 import axios from "axios";
 
-const MutluAylik = () => {
+const InciAylik = () => {
   const [aylikSayilar, setAylikSayilar] = useState([]);
   const [monthlyTotal, setMonthlyTotal] = useState([]);
 
   const akuTurleri = useMemo(() => [
+    "42 AH İNCE ",
+    "50 AH AKÜ",
     "60 AH AKÜ",
+    "60 AH DAR",
     "72 AH AKÜ",
     "105 AH AKÜ",
     "135 AH AKÜ",
@@ -18,7 +21,7 @@ const MutluAylik = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api/mutlu/kayit`);
+        const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api/inci/kayit`);
         const yeniAylikSayilar = Array.from({ length: 12 }, () => Array(akuTurleri.length).fill(0));
 
         response.data.forEach((item) => {
@@ -90,4 +93,4 @@ const MutluAylik = () => {
   );
 };
 
-export default MutluAylik;
+export default InciAylik;

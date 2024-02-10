@@ -2,9 +2,9 @@ import React, { useState, useEffect, useMemo } from "react";
 import axios from "axios";
 import { Button, Card } from "antd";
 import { styled } from "@mui/system";
-import MutluHaftalik from "./MutluHaftalik";
-import MutluAylik from "./MutluAylik";
-import MutluGrafik from "./MutluGrafik";
+import KraftHaftalik from "./KraftHaftalik";
+import KraftAylik from "./KraftAylik";
+import KraftGrafik from "./KraftGrafik";
 
 const { Meta } = Card;
 
@@ -15,14 +15,15 @@ const StyledCard = styled(Card)({
   color: "red",
 });
 
-const MutluSonuc = () => {
+const KraftSonuc = () => {
   const [akuAdet, setAkuAdet] = useState([]);
 
   const akuTurleri = useMemo(
     () => [
       "60 AH AKÜ",
+      "70 AH EFB",
       "72 AH AKÜ",
-      "105 AH AKÜ",
+      "90 AH TERS",
       "135 AH AKÜ",
       "180 AH AKÜ",
     ],
@@ -33,7 +34,7 @@ const MutluSonuc = () => {
     const fetchAkuAdetAndCalculateTable = async () => {
       try {
         const response = await axios.get(
-          `${process.env.REACT_APP_SERVER_URL}/api/mutlu/kayit`
+          `${process.env.REACT_APP_SERVER_URL}/api/Kraft/kayit`
         );
         setAkuAdet(response.data);
       } catch (error) {
@@ -74,7 +75,7 @@ const MutluSonuc = () => {
   return (
     <div style={{ padding: "10px" }}>
       <h2 style={{ textAlign: "center", color: "#144b82" }}>
-        Toplam Satılan Mutlu Akü Adeti: {akuAdet.length}
+        Toplam Satılan Kraft Akü Adeti: {akuAdet.length}
       </h2>
       <div
         style={{
@@ -116,11 +117,11 @@ const MutluSonuc = () => {
         </Button>
       </div>
       <br />
-      <div>{isAylikLoading && <MutluAylik />}</div>
-      <div>{isGrafikLoading && <MutluGrafik />}</div>
-      <div>{isHaftalikLoading && <MutluHaftalik />}</div>
+      <div>{isAylikLoading && <KraftAylik />}</div>
+      <div>{isGrafikLoading && <KraftGrafik />}</div>
+      <div>{isHaftalikLoading && <KraftHaftalik />}</div>
     </div>
   );
 };
 
-export default MutluSonuc;
+export default KraftSonuc;

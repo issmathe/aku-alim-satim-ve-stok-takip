@@ -57,6 +57,8 @@ const KlasAylik = () => {
     setMonthlyTotal(monthlyTotal);
   }, [aylikSayilar]);
 
+  const currentMonthIndex = moment().month(); // Güncellendi
+
   return (
     <div>
       <h2 style={{ textAlign: "center", color: "#144b82" }}>Aylık Akü Sayıları</h2>
@@ -74,7 +76,7 @@ const KlasAylik = () => {
         </thead>
         <tbody>
           {aylikSayilar.map((ay, ayIndex) => (
-            <tr key={ayIndex}>
+            <tr key={ayIndex} style={{ background: ayIndex === currentMonthIndex ? "yellow" : "transparent" }}>
               <td style={{ border: "1px solid #ddd", padding: "5px" }}>
                 {moment().month(ayIndex).format("MMMM")}
               </td>

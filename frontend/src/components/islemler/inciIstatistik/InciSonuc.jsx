@@ -2,9 +2,9 @@ import React, { useState, useEffect, useMemo } from "react";
 import axios from "axios";
 import { Button, Card } from "antd";
 import { styled } from "@mui/system";
-import MutluHaftalik from "./MutluHaftalik";
-import MutluAylik from "./MutluAylik";
-import MutluGrafik from "./MutluGrafik";
+import InciHaftalik from "./InciHaftalik";
+import InciAylik from "./InciAylik";
+import InciGrafik from "./InciGrafik";
 
 const { Meta } = Card;
 
@@ -15,12 +15,15 @@ const StyledCard = styled(Card)({
   color: "red",
 });
 
-const MutluSonuc = () => {
+const InciSonuc = () => {
   const [akuAdet, setAkuAdet] = useState([]);
 
   const akuTurleri = useMemo(
     () => [
+      "42 AH İNCE ",
+      "50 AH AKÜ",
       "60 AH AKÜ",
+      "60 AH DAR",
       "72 AH AKÜ",
       "105 AH AKÜ",
       "135 AH AKÜ",
@@ -33,7 +36,7 @@ const MutluSonuc = () => {
     const fetchAkuAdetAndCalculateTable = async () => {
       try {
         const response = await axios.get(
-          `${process.env.REACT_APP_SERVER_URL}/api/mutlu/kayit`
+          `${process.env.REACT_APP_SERVER_URL}/api/inci/kayit`
         );
         setAkuAdet(response.data);
       } catch (error) {
@@ -74,7 +77,7 @@ const MutluSonuc = () => {
   return (
     <div style={{ padding: "10px" }}>
       <h2 style={{ textAlign: "center", color: "#144b82" }}>
-        Toplam Satılan Mutlu Akü Adeti: {akuAdet.length}
+        Toplam Satılan Inci Akü Adeti: {akuAdet.length}
       </h2>
       <div
         style={{
@@ -116,11 +119,11 @@ const MutluSonuc = () => {
         </Button>
       </div>
       <br />
-      <div>{isAylikLoading && <MutluAylik />}</div>
-      <div>{isGrafikLoading && <MutluGrafik />}</div>
-      <div>{isHaftalikLoading && <MutluHaftalik />}</div>
+      <div>{isAylikLoading && <InciAylik />}</div>
+      <div>{isGrafikLoading && <InciGrafik />}</div>
+      <div>{isHaftalikLoading && <InciHaftalik />}</div>
     </div>
   );
 };
 
-export default MutluSonuc;
+export default InciSonuc;

@@ -2,22 +2,17 @@ import React, { useState, useEffect, useMemo, useCallback } from "react";
 import axios from "axios";
 import moment from 'moment';
 
-const KlasHaftalik = () => {
+const KraftHaftalik = () => {
   const baslangicTarihi = "2024-01-01";
   const haftaSayisi = 52;
 
   const akuTurleri = useMemo(() => [
-    "KLAS 60 AH AKÜ",
-    "KLAS 60 AH DAR",
-    "KLAS 70 AH EFB",
-    "KLAS 72 AH AKÜ",
-    "KLAS 90 AH AKÜ",
-    "KLAS 100 AH AKÜ",
-    "KLAS 105 AH AKÜ",
-    "KLAS 135 AH AKÜ",
-    "KLAS 150 AH AKÜ",
-    "KLAS 180 AH AKÜ",
-    "KLAS 225 AH AKÜ",
+    "60 AH AKÜ",
+    "70 AH EFB",
+    "72 AH AKÜ",
+    "90 AH TERS",
+    "135 AH AKÜ",
+    "180 AH AKÜ",
   ], []);
 
   const haftaNumarasi = useCallback((tarih) => {
@@ -29,7 +24,7 @@ const KlasHaftalik = () => {
   useEffect(() => {
     const fetchAkuAdetAndCalculateTable = async () => {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api/klas/kayit`);
+        const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api/Kraft/kayit`);
 
         const newTablo = Array.from({ length: haftaSayisi + 1 }, () => Array(akuTurleri.length).fill(0));
         response.data.forEach((item) => {
@@ -117,4 +112,4 @@ const KlasHaftalik = () => {
   );
 };
 
-export default KlasHaftalik;
+export default KraftHaftalik;

@@ -3,7 +3,6 @@ import axios from "axios";
 import moment from 'moment';
 
 const MutluHaftalik = () => {
-  const [akuAdet, setAkuAdet] = useState([]);
   const baslangicTarihi = "2024-01-01";
   const haftaSayisi = 52;
 
@@ -21,30 +20,27 @@ const MutluHaftalik = () => {
 
   const [tablo, setTablo] = useState(Array.from({ length: haftaSayisi + 1 }, () => Array(akuTurleri.length).fill(0)));
 
-  const fetchAkuAdetAndCalculateTable = useCallback(async () => {
-    try {
-      const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api/mutlu/kayit`);
-      setAkuAdet(response.data);
-
-      const newTablo = Array.from({ length: haftaSayisi + 1 }, () => Array(akuTurleri.length).fill(0));
-      response.data.forEach((item) => {
-        const hafta = haftaNumarasi(item.satisTarihi);
-        const akuTurIndex = akuTurleri.indexOf(item.aku);
-        if (hafta > 0 && hafta <= haftaSayisi && akuTurIndex !== -1) {
-          newTablo[hafta][akuTurIndex] += 1;
-        }
-      });
-      setTablo(newTablo);
-    } catch (error) {
-      console.error("Veri getirme hatası:", error);
-    }
-  }, [haftaNumarasi, haftaSayisi, akuTurleri]);
-
   useEffect(() => {
+    const fetchAkuAdetAndCalculateTable = async () => {
+      try {
+        const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api/mutlu/kayit`);
+
+        const newTablo = Array.from({ length: haftaSayisi + 1 }, () => Array(akuTurleri.length).fill(0));
+        response.data.forEach((item) => {
+          const hafta = haftaNumarasi(item.satisTarihi);
+          const akuTurIndex = akuTurleri.indexOf(item.aku);
+          if (hafta > 0 && hafta <= haftaSayisi && akuTurIndex !== -1) {
+            newTablo[hafta][akuTurIndex] += 1;
+          }
+        });
+        setTablo(newTablo);
+      } catch (error) {
+        console.error("Veri getirme hatası:", error);
+      }
+    };
+
     fetchAkuAdetAndCalculateTable();
-  }, [fetchAkuAdetAndCalculateTable]);
-
-
+  }, [haftaNumarasi, haftaSayisi, akuTurleri]);
 
   const currentWeek = moment().isoWeek();
 
@@ -55,11 +51,6 @@ const MutluHaftalik = () => {
 
   return (
     <div style={{ padding: "10px" }}>
-      <h2 style={{ textAlign: "center", color: "#144b82" }}>
-        Toplam Satılan Mutlu Akü Adeti: {akuAdet.length}
-      </h2>
-      <br />
-      <hr />
       <div>
         <h2 style={{ textAlign: "center", color: "#144b82" }}>
           Haftalık Satış
