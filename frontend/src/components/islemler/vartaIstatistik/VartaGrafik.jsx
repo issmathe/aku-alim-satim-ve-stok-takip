@@ -28,10 +28,11 @@ const VartaGrafik = () => {
   };
 
   const akuTurleri = [
-    "74 AH AKÜ",
+    "60 AH AKÜ",
     "60 AH EFB",
     "70 AH EFB",
     "70 AH AGM",
+    "74 AH AKÜ",
     "105 AH AKÜ",
     "180 AH AKÜ",
     "240 AH EFB",
@@ -39,13 +40,14 @@ const VartaGrafik = () => {
 
   // Her bir akuTur için belirlenen özel renkler
   const akuTurRenkleri = {
-    "74 AH AKÜ": "#ff0000", // Örneğin: Kırmızı
-    "60 AH EFB": "#00ff00", // Örneğin: Yeşil
-    "70 AH EFB": "#140f07", // Özel Renk
-    "70 AH AGM": "#ff00ff", // Örneğin: Pembe
-    "105 AH AKÜ": "#def84c", // Özel Renk
-    "180 AH AKÜ": "#cfc5ff", // Özel Renk
-    "240 AH EFB": "#f2c08c", // Özel Renk
+    "60 AH AKÜ": "#140f07", // Yeşil
+    "60 AH EFB": "#00ff00", // Yeşil
+    "70 AH EFB": "#140f07", // Yeşil (Özel Renk)
+    "70 AH AGM": "#ff00ff", // Pembe
+    "74 AH AKÜ": "#ff0000", // Kırmızı (Özel Renk)
+    "105 AH AKÜ": "#def84c", // Açık Yeşil (Özel Renk)
+    "180 AH AKÜ": "#cfc5ff", // Lime Yeşili (Özel Renk)
+    "240 AH EFB": "#f2c08c", // Yeşil Sarı (Özel Renk)
   };
 
   // Sütun grafiği için verileri hazırla

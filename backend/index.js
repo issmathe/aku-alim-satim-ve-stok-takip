@@ -23,7 +23,8 @@ const kraftAkuKayitRoute = require("./routes/kraftAkuSatim.js")
 const duracelAkuRoute = require("./routes/duracelAku.js")
 const duracelAkuKayitRoute = require("./routes/duracelAkuSatim.js")
 
-
+const euroreparAkuRoute = require("./routes/euroreparAku.js")
+const euroreparAkuKayitRoute = require("./routes/euroreparAkuSatim.js")
 
 
 dotenv.config();
@@ -54,7 +55,8 @@ app.use("/api/kraft/kayit", kraftAkuKayitRoute)
 app.use("/api/duracel", duracelAkuRoute)
 app.use("/api/duracel/kayit", duracelAkuKayitRoute)
 
-
+app.use("/api/eurorepar", euroreparAkuRoute)
+app.use("/api/eurorepar/kayit", euroreparAkuKayitRoute)
 
 app.listen(PORT, () => {
   database()

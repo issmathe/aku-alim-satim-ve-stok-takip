@@ -8,10 +8,11 @@ const VartaAylik = () => {
   const [monthlyTotal, setMonthlyTotal] = useState([]);
 
   const akuTurleri = useMemo(() => [
-    "74 AH AKÜ",
+    "60 AH AKÜ",
     "60 AH EFB",
     "70 AH EFB",
     "70 AH AGM",
+    "74 AH AKÜ",
     "105 AH AKÜ",
     "180 AH AKÜ",
     "240 AH EFB",

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-function VartaAkuEkle({ handleAddAkuClick }) {
+function EuroreparAkuEkle({ handleAddAkuClick }) {
   const [formData, setFormData] = useState({
     name: "",
     piece: "",
@@ -14,7 +14,7 @@ function VartaAkuEkle({ handleAddAkuClick }) {
 
     try {
       const response = await axios.post(
-        process.env.REACT_APP_SERVER_URL + "/api/varta",
+        process.env.REACT_APP_SERVER_URL + "/api/eurorepar",
         formData
       );
       console.log("Product created:", response.data);
@@ -30,7 +30,7 @@ function VartaAkuEkle({ handleAddAkuClick }) {
     <div className="container mt-4">
       <div className="row justify-content-center">
         <div className="col-md-6">
-          <h2 className="background">Varta Akü Ürün Ekleme</h2>
+          <h2 className="background">Eurorepar Akü Ürün Ekleme</h2>
           {successMessage && (
             <p className="alert alert-success">{successMessage}</p>
           )}
@@ -51,13 +51,10 @@ function VartaAkuEkle({ handleAddAkuClick }) {
                 </option>
                 {[
                   "60 AH AKÜ",
-                  "60 AH EFB",
-                  "70 AH EFB",
-                  "70 AH AGM",
-                  "74 AH AKÜ",
-                  "105 AH AKÜ",
-                  "180 AH AKÜ",
-                  "240 AH EFB",
+                  "60 EFB AKÜ",
+                  "70 EFB AKÜ",
+                  "70 AGM AKÜ",
+                  "72 AH AKÜ",
                 ].map((option) => (
                   <option key={option} value={option}>
                     {option}
@@ -115,4 +112,4 @@ function VartaAkuEkle({ handleAddAkuClick }) {
   );
 }
 
-export default VartaAkuEkle;
+export default EuroreparAkuEkle;

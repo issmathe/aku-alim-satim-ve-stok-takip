@@ -85,6 +85,21 @@ const Header = () => {
       label: <Link to="/duracelAkuSatim">Duracel Akü Satım İşlemleri</Link>,
     },
   ];
+
+  const euroreparAkuItems = [
+    {
+      key: "1",
+      label: <Link to="/euroreparAkuIslemleri">Eurorepar Akü İşlemleri</Link>,
+    },
+    {
+      key: "2",
+      label: <Link to="/euroreparAkuSatim">Eurorepar Akü Satım İşlemleri</Link>,
+    },
+  ];
+
+
+
+  
   const veresiye = [
 
     { key: "1", label: <Link to="/veresiye">Veresiye Listem</Link> },
@@ -126,6 +141,7 @@ const Header = () => {
             <li>{createDropdown(vartaAkuItems, "Varta Akü")}</li>
             <li>{createDropdown(kraftAkuItems, "Kraft Akü")}</li>
             <li>{createDropdown(duracelAkuItems, "Duracel Akü")}</li>
+            <li>{createDropdown(euroreparAkuItems, "Eurorepar Akü")}</li>
             <li>{createDropdown(veresiye, "Veresiye")}</li>
             <li>{createDropdown(islemler, "İstatistik")}</li>
           </ul>
