@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Button, Dropdown, Space } from "antd";
-import HavaDurumu from "../yardimcilar/HavaDurumu";
 import "./header.css";
 
 const Header = () => {
@@ -119,13 +118,8 @@ const Header = () => {
   return (
     <div>
       <header className="header" style={{ height: "80px" }}>
-        <div className="d-flex">
-          <div className="logoContainer">
-            <HavaDurumu />
-          </div>
-        </div>
         <nav>
-          <ul>
+          <ul style={{marginLeft:"100px",marginTop:"20px"}}>
             <li
               style={{
                 paddingTop: "2px",
@@ -147,11 +141,6 @@ const Header = () => {
             <li>{createDropdown(islemler, "İstatistik")}</li>
           </ul>
         </nav>
-        <div>
-        <button className="btn btn-primary">
-              Giriş Yap
-            </button>
-        </div>
       </header>
     </div>
   );
