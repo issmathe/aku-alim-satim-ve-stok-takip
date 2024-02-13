@@ -1,160 +1,205 @@
 import React, { useState, useEffect } from "react";
 import { Button, Card, Space } from "antd";
 import axios from "axios";
+import moment from "moment";
 import { Link } from "react-router-dom";
 
 const MutluAku = () => {
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-  const [mutluAkuData, setmutluAkuData] = useState([]);
-  const [goster, setGoster] = useState(false);
   const [totalSales, setTotalSales] = useState(0);
   const [totalQuantity, setTotalQuantity] = useState(0);
-
-  const fetchData = async () => {
-    try {
-      const response = await axios.get(
-        process.env.REACT_APP_SERVER_URL + "/api/mutlu"
-      );
-      setmutluAkuData(response.data);
-    } catch (error) {
-      console.error("Veri çekiminde hata oluştu:", error.message);
-    }
-  };
-
-  const fetchTotalSales = async () => {
-    try {
-      const response = await axios.get(
-        process.env.REACT_APP_SERVER_URL + "/api/mutlu/kayit/total"
-      );
-      setTotalSales(response.data.totalSum);
-    } catch (error) {
-      console.error(
-        "Toplam satış verisini çekerken hata oluştu:",
-        error.message
-      );
-    }
-  };
-
-  const fetchTotalQuantity = async () => {
-    try {
-      const response = await axios.get(
-        process.env.REACT_APP_SERVER_URL + "/api/mutlu/kayit"
-      );
-      setTotalQuantity(response.data.length);
-    } catch (error) {
-      console.error(
-        "Toplam adet verisini çekerken hata oluştu:",
-        error.message
-      );
-    }
-  };
+  const [currentWeekSalesData, setCurrentWeekSalesData] = useState({
+    totalSales: 0,
+    totalPieces: 0,
+    salesByPaymentType: {
+      visa: 0,
+      nakit: 0,
+      veresiye: 0,
+    },
+  });
+  const [currentMonthSalesData, setCurrentMonthSalesData] = useState({
+    totalSales: 0,
+    totalPieces: 0,
+    salesByPaymentType: {
+      visa: 0,
+      nakit: 0,
+      veresiye: 0,
+    },
+  });
 
   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const totalSalesResponse = await axios.get(
+          `${process.env.REACT_APP_SERVER_URL}/api/mutlu/kayit/total`
+        );
+        setTotalSales(totalSalesResponse.data.totalSum);
+
+        const totalQuantityResponse = await axios.get(
+          `${process.env.REACT_APP_SERVER_URL}/api/mutlu/kayit`
+        );
+        setTotalQuantity(totalQuantityResponse.data.length);
+      } catch (error) {
+        console.error("Toplam satış veya adet verisini çekerken hata oluştu:", error.message);
+      }
+    };
+
     fetchData();
-    fetchTotalSales();
-    fetchTotalQuantity();
-
-    const handleResize = () => {
-      setWindowWidth(window.innerWidth);
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
   }, []);
 
-  const grafikGor = () => {
-    setGoster(!goster);
-  };
+  useEffect(() => {
+    const fetchWeeklySales = async () => {
+      try {
+        const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api/mutlu/kayit`);
+        const currentWeekNumber = moment().isoWeek();
+
+        const currentWeekSalesData = response.data.reduce(
+          (accumulator, belge) => {
+            const hafta = moment(belge.createdAt).isoWeek();
+
+            if (hafta === currentWeekNumber) {
+              accumulator.totalSales += 1;
+              accumulator.totalPieces += belge.piece;
+
+              if (belge.paymentType === "visa") {
+                accumulator.salesByPaymentType.visa += 1;
+              } else if (belge.paymentType === "nakit") {
+                accumulator.salesByPaymentType.nakit += 1;
+              } else if (belge.paymentType === "veresiye") {
+                accumulator.salesByPaymentType.veresiye += 1;
+              }
+            }
+
+            return accumulator;
+          },
+          {
+            totalSales: 0,
+            totalPieces: 0,
+            salesByPaymentType: {
+              visa: 0,
+              nakit: 0,
+              veresiye: 0,
+            },
+          }
+        );
+
+        setCurrentWeekSalesData(currentWeekSalesData);
+      } catch (error) {
+        console.error("Haftalık veri getirme hatası:", error);
+      }
+    };
+
+    fetchWeeklySales();
+  }, []);
+
+  useEffect(() => {
+    const fetchMonthlySales = async () => {
+      try {
+        const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api/mutlu/kayit`);
+        const currentMonthNumber = moment().month() + 1;
+
+        const currentMonthSalesData = response.data.reduce(
+          (accumulator, belge) => {
+            const ay = moment(belge.createdAt).month() + 1;
+
+            if (ay === currentMonthNumber) {
+              accumulator.totalSales += 1;
+              accumulator.totalPieces += belge.piece;
+
+              if (belge.paymentType === "visa") {
+                accumulator.salesByPaymentType.visa += 1;
+              } else if (belge.paymentType === "nakit") {
+                accumulator.salesByPaymentType.nakit += 1;
+              } else if (belge.paymentType === "veresiye") {
+                accumulator.salesByPaymentType.veresiye += 1;
+              }
+            }
+
+            return accumulator;
+          },
+          {
+            totalSales: 0,
+            totalPieces: 0,
+            salesByPaymentType: {
+              visa: 0,
+              nakit: 0,
+              veresiye: 0,
+            },
+          }
+        );
+
+        setCurrentMonthSalesData(currentMonthSalesData);
+      } catch (error) {
+        console.error("Aylık veri getirme hatası:", error);
+      }
+    };
+
+    fetchMonthlySales();
+  }, []);
 
   return (
     <div>
-      {windowWidth > 600 ? (
-        <Space direction="vertical" size={16}>
-          <Card
+      <Space direction="vertical" size={16}>
+        <Card
+          style={{
+            width: 210,
+            fontSize: "12px",
+            background: "#cfc0b4",
+          }}
+        >
+          <h4
             style={{
-              width: 210,
-              fontSize: "12px",
-              background: "#cfc0b4",
+              color: "#1f1a38",
+              border: "1px solid",
+              borderRadius: "15px",
+              backgroundColor: "#f2c202",
             }}
           >
-            <h4 style={{ color: "#1f1a38", border: "1px solid", borderRadius: "15px", backgroundColor: "#f2c202" }}>MUTLU AKÜ</h4>
-            <div>
-              <h1 style={{ fontSize: "17px" }}>
-                Toplam Satış Tutarı:{" "}
-                <span
-                  style={{
-                    color: "#FFFACD",
-                    fontSize: "20px",
-                    backgroundColor: "#90A4AE",
-                    borderRadius: "10px",
-                  }}
-                >
-                  {totalSales}₺
-                </span>
-              </h1>
-              <h1 style={{ fontSize: "17px" }}>
-                Toplam Satış Adeti:
-                <br />{" "}
-                <span
-                  style={{
-                    color: "#FFFACD",
-                    fontSize: "20px",
-                    backgroundColor: "#90A4AE",
-                    borderRadius: "8px",
-                  }}
-                >
-                  {totalQuantity}
-                </span>{" "}
-              </h1>
-            </div>
+            MUTLU AKÜ
+          </h4>
+          <hr />
+          <div>
+            <h1 style={{ fontSize: "11px" }}>
+              Toplam Satış Tutarı:{" "}
+              <span
+                style={{
+                  color: "#FFFACD",
+                  fontSize: "20px",
+                  backgroundColor: "#90A4AE",
+                  borderRadius: "10px",
+                }}
+              >
+                {totalSales}₺
+              </span>
+            </h1>
+            <h1 style={{ fontSize: "11px" }}>
+              Toplam Satış Adeti:{" "}
+              <span
+                style={{
+                  color: "#FFFACD",
+                  fontSize: "20px",
+                  backgroundColor: "#90A4AE",
+                  borderRadius: "8px",
+                }}
+              >
+                {totalQuantity}
+              </span>{" "}
+            </h1>
+          </div>
+          <hr />
+          <p>Haftalık Satış Fiyatı: {currentWeekSalesData.totalPieces}</p>
+          <p>Haftalık Satış Adeti: {currentWeekSalesData.totalSales}</p>
 
-            <Button type="primary">
-              <Link to="/mutluAkuSatim" style={{ color: "white" }}>
-                Mutlu Akü Satışı Yap
-              </Link>
-            </Button>
-            <hr style={{ color: "black" }} />
-            <Button type="primary" onClick={grafikGor}>
-              Akü Bilgileri Gör
-            </Button>{" "}
-            <hr style={{ color: "black" }} />
-            <div>
-              {goster && (
-                <div>
-                  {mutluAkuData.map((item) => (
-                    <div
-                      style={{ fontSize: "14px", maxHeight: "100px" }}
-                      key={item._id}
-                      className="card-text"
-                    >
-                      <h5 className="card-title" style={{ fontSize: "16px" }}>
-                        {item.name}
-                      </h5>
-                      <span style={{ fontSize: "14px" }}>
-                        Fiyat:{" "}
-                        <span style={{ color: "blue" }}>{item.price}</span>
-                      </span>
-                      <span style={{ marginLeft: "10px", fontSize: "14px" }}>
-                        Stok: <span style={{ color: "red" }}>{item.piece}</span>
-                      </span>
-                      <hr style={{ padding: "1px", color: "black" }} />
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
-          </Card>
-        </Space>
-      ) : (
-        <Button type="warning">
-          <Link to="/mutluAkuSatim" style={{ color: "white" }}>
-            Mutlu Akü Satışı Yap
-          </Link>
-        </Button>
-      )}
+          <hr />
+          <p>Aylık Satış Fiyatı: {currentMonthSalesData.totalPieces}</p>
+          <p>Aylık Satış Adeti: {currentMonthSalesData.totalSales}</p>
+          <hr />
+          <Button type="primary">
+            <Link to="/mutluAkuSatim" style={{ color: "white" }}>
+              Mutlu Akü Satışı Yap
+            </Link>
+          </Button>
+        </Card>
+      </Space>
     </div>
   );
 };
