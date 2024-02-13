@@ -23,8 +23,8 @@ const KlasHaftalik = () => {
   }, []);
 
   // Sadece içerisinde bulunduğumuz haftaya ait satışları ve adetleri hesapla
-  const calculateCurrentWeekSales = () => {
-    const currentWeekSales = {
+  const calculateWeekSales = (weekNumber) => {
+    const weekSales = {
       totalSales: 0,
       totalPieces: 0,
       salesByPaymentType: {
@@ -37,49 +37,62 @@ const KlasHaftalik = () => {
 
     // Initialize quantity for each product
     ["KLAS 60 AH AKÜ", "KLAS 60 AH DAR", "KLAS 70 AH EFB", "KLAS 72 AH AKÜ", "KLAS 90 AH AKÜ", "KLAS 100 AH AKÜ", "KLAS 105 AH AKÜ", "KLAS 135 AH AKÜ", "KLAS 150 AH AKÜ", "KLAS 180 AH AKÜ", "KLAS 225 AH AKÜ"].forEach(product => {
-      currentWeekSales.quantityByName[product] = 0;
+      weekSales.quantityByName[product] = 0;
     });
 
     data.forEach((belge) => {
       const hafta = moment(belge.createdAt).isoWeek();
 
-      if (hafta === currentWeek) {
-        currentWeekSales.totalSales += 1; // Satış adedini artır
-        currentWeekSales.totalPieces += belge.piece; // Satış adetini artır
+      if (hafta === weekNumber) {
+        weekSales.totalSales += 1; // Satış adedini artır
+        weekSales.totalPieces += belge.piece; // Satış adetini artır
 
         // Ödeme türüne göre satış adedini artır
         if (belge.paymentType === 'visa') {
-          currentWeekSales.salesByPaymentType.visa += 1;
+          weekSales.salesByPaymentType.visa += 1;
         } else if (belge.paymentType === 'nakit') {
-          currentWeekSales.salesByPaymentType.nakit += 1;
+          weekSales.salesByPaymentType.nakit += 1;
         } else if (belge.paymentType === 'veresiye') {
-          currentWeekSales.salesByPaymentType.veresiye += 1;
+          weekSales.salesByPaymentType.veresiye += 1;
         }
 
         // Adetini artır sadece belirli ürünler için
-        if (currentWeekSales.quantityByName.hasOwnProperty(belge.aku)) {
-          currentWeekSales.quantityByName[belge.aku] += 1;
+        if (weekSales.quantityByName.hasOwnProperty(belge.aku)) {
+          weekSales.quantityByName[belge.aku] += 1;
         }
       }
     });
 
-    return currentWeekSales;
+    return weekSales;
   };
 
-  const currentWeekSalesData = calculateCurrentWeekSales();
+  // 1'den 52'ye kadar olan hafta numaralarını içeren array
+  const weeksData = Array.from({ length: 52 }, (_, index) => index + 1);
 
   // Tablo sütun tanımları
-  const columns = Object.keys(currentWeekSalesData.quantityByName).map((product, index) => ({
-    title: `Adet (${product})`,
-    dataIndex: product,
-    key: index,
-  }));
+  const columns = [
+    {
+      title: "Hafta",
+      dataIndex: "week",
+      key: "week",
+      render: (week) => `Hafta ${week}`,
+    },
+    ...Object.keys(calculateWeekSales(currentWeek).quantityByName).map((product, index) => ({
+      title: `Adet (${product})`,
+      dataIndex: product,
+      key: index,
+    })),
+  ];
 
   // Tablo veri düzeni
-  const dataSource = [{
-    key: 1,
-    ...currentWeekSalesData.quantityByName,
-  }];
+  const dataSource = weeksData.map((week) => {
+    const weekSalesData = calculateWeekSales(week);
+    return {
+      key: week,
+      week,
+      ...weekSalesData.quantityByName,
+    };
+  });
 
   return (
     <div>
@@ -88,6 +101,7 @@ const KlasHaftalik = () => {
           columns={columns}
           dataSource={dataSource}
           pagination={false}
+          style={{ padding: '10px' }}
         />
       )}
     </div>
