@@ -4,7 +4,7 @@ import axios from "axios";
 import moment from "moment";
 import { Link } from "react-router-dom";
 
-const KlasAku = () => {
+const DuracelAku = () => {
   const [totalSales, setTotalSales] = useState(0);
   const [totalQuantity, setTotalQuantity] = useState(0);
   const [currentWeekSalesData, setCurrentWeekSalesData] = useState({
@@ -30,12 +30,12 @@ const KlasAku = () => {
     const fetchData = async () => {
       try {
         const totalSalesResponse = await axios.get(
-          `${process.env.REACT_APP_SERVER_URL}/api/klas/kayit/total`
+          `${process.env.REACT_APP_SERVER_URL}/api/duracel/kayit/total`
         );
         setTotalSales(totalSalesResponse.data.totalSum);
 
         const totalQuantityResponse = await axios.get(
-          `${process.env.REACT_APP_SERVER_URL}/api/klas/kayit`
+          `${process.env.REACT_APP_SERVER_URL}/api/duracel/kayit`
         );
         setTotalQuantity(totalQuantityResponse.data.length);
       } catch (error) {
@@ -49,7 +49,7 @@ const KlasAku = () => {
   useEffect(() => {
     const fetchWeeklySales = async () => {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api/klas/kayit`);
+        const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api/duracel/kayit`);
         const currentWeekNumber = moment().isoWeek();
 
         const currentWeekSalesData = response.data.reduce(
@@ -94,7 +94,7 @@ const KlasAku = () => {
   useEffect(() => {
     const fetchMonthlySales = async () => {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api/klas/kayit`);
+        const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api/duracel/kayit`);
         const currentMonthNumber = moment().month() + 1;
 
         const currentMonthSalesData = response.data.reduce(
@@ -152,13 +152,14 @@ const KlasAku = () => {
               border: "1px solid",
               borderRadius: "15px",
               backgroundColor: "#f2c202",
+              fontSize:"21px",
             }}
           >
-            KLAS AKÜ
+            DURACEL AKÜ
           </h4>
           <hr />
           <div>
-            <h1 style={{ fontSize: "10px" }}>
+            <h1 style={{ fontSize: "11px" }}>
               Toplam Satış Tutarı:{" "}
               <span
                 style={{
@@ -192,11 +193,10 @@ const KlasAku = () => {
           <hr />
           <p>Aylık Satış Fiyatı: {currentMonthSalesData.totalPieces}</p>
           <p>Aylık Satış Adeti: {currentMonthSalesData.totalSales}</p>
-
           <hr />
           <Button type="primary">
-            <Link to="/klasAkuSatim" style={{ color: "white" }}>
-              KLAS Akü Satışı Yap
+            <Link to="/duracelAkuSatim" style={{ color: "white" }}>
+              Duracel Akü Satışı Yap
             </Link>
           </Button>
         </Card>
@@ -205,4 +205,4 @@ const KlasAku = () => {
   );
 };
 
-export default KlasAku;
+export default DuracelAku;

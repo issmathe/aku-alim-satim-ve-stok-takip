@@ -141,7 +141,7 @@ const InciAku = () => {
       <Space direction="vertical" size={16}>
         <Card
           style={{
-            width: 210,
+            width: 200,
             fontSize: "12px",
             background: "#cfc0b4",
           }}

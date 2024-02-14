@@ -4,6 +4,10 @@ import MutluAku from "../components/homeGosterilecekler/MutluAku.jsx";
 import KlasAku from "../components/homeGosterilecekler/KlasAku.jsx";
 // import KlasHaftalik from "../components/homeGosterilecekler/haftalikVeri/KlasHaftalik.jsx";
 import InciAku from "../components/homeGosterilecekler/InciAku.jsx";
+import VartaAku from "../components/homeGosterilecekler/VartaAku.jsx";
+import KraftAku from "../components/homeGosterilecekler/KraftAku.jsx";
+import DuracelAku from "../components/homeGosterilecekler/DuracelAku.jsx";
+import EuroreparAkuAku from "../components/homeGosterilecekler/EuroreparAku.jsx";
 
 const Home = () => {
   return (
@@ -16,10 +20,14 @@ const Home = () => {
           boxSizing: "border-box",
         }}
       >
-        <div style={{ display: "flex", gap: "20px" }}>
+        <div style={{ display: "flex", gap: "10px" }}>
           <KlasAku />
           <MutluAku />
           <InciAku/>
+          <VartaAku/>
+          <KraftAku/>
+          <DuracelAku/>
+          <EuroreparAkuAku/>
         </div>
       </div>
       {/* <KlasHaftalik/> */}
