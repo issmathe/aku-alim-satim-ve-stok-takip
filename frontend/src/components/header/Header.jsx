@@ -96,13 +96,6 @@ const Header = () => {
     },
   ];
 
-
-
-  
-  const veresiye = [
-
-    { key: "1", label: <Link to="/veresiye">Veresiye Listem</Link> },
-  ];
   const islemler = [
     { key: "1", label: <Link to="/klasSonuc">Klas Akü İstatistik</Link> },
     { key: "2", label: <Link to="/mutluSonuc">Mutlu Akü İstatistik</Link> },
@@ -137,7 +130,9 @@ const Header = () => {
             <li>{createDropdown(kraftAkuItems, "Kraft Akü")}</li>
             <li>{createDropdown(duracelAkuItems, "Duracel Akü")}</li>
             <li>{createDropdown(euroreparAkuItems, "Eurorepar Akü")}</li>
-            <li>{createDropdown(veresiye, "Veresiye")}</li>
+            <li style={{width:"120px",textAlign: "center",backgroundColor:"#198754",borderRadius:"4px",paddingTop:"7px",fontSize:"14px",}}>
+              <Link style={{color:"#f9efef"}} to="/veresiye">Veresiye Listem</Link>
+            </li>
             <li>{createDropdown(islemler, "İstatistik")}</li>
           </ul>
         </nav>

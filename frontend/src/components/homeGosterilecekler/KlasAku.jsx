@@ -159,7 +159,7 @@ const KlasAku = () => {
           <hr />
           <div>
             <h1 style={{ fontSize: "10px" }}>
-              Toplam Satış Tutarı:{" "}
+              Toplam Satış:{" "}
               <span
                 style={{
                   color: "#FFFACD",
@@ -186,12 +186,12 @@ const KlasAku = () => {
             </h1>
           </div>
           <hr />
-          <p>Haftalık Satış Fiyatı: {currentWeekSalesData.totalPieces}</p>
-          <p>Haftalık Satış Adeti: {currentWeekSalesData.totalSales}</p>
+          <p>Haftalık Satış Fiyatı: <span style={{backgroundColor:"#55edc9",borderRadius:"5px"}}>{currentWeekSalesData.totalPieces}</span></p>
+          <p>Haftalık Satış Adeti: <span style={{backgroundColor:"#55edc9",borderRadius:"5px"}}>{currentWeekSalesData.totalSales}</span></p>
 
           <hr />
-          <p>Aylık Satış Fiyatı: {currentMonthSalesData.totalPieces}</p>
-          <p>Aylık Satış Adeti: {currentMonthSalesData.totalSales}</p>
+          <p>Aylık Satış Fiyatı: <span style={{backgroundColor:"#55edc9",borderRadius:"5px"}}>{currentMonthSalesData.totalPieces}</span></p>
+          <p>Aylık Satış Adeti: <span style={{backgroundColor:"#55edc9",borderRadius:"5px"}}>{currentMonthSalesData.totalSales}</span> </p>
 
           <hr />
           <Button type="primary">

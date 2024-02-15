@@ -11,7 +11,7 @@ import EuroreparAkuAku from "../components/homeGosterilecekler/EuroreparAku.jsx"
 
 const Home = () => {
   return (
-    <div style={{height: "100%", background: "#364d79" }}>
+    <div style={{height: "708px", background: "#364d79" }}>
       <Header />
       <div
         className="text-center text-warning pt-2"
