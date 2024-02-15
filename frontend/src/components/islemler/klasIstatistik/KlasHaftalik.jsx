@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import moment from "moment";
 import { Table } from "antd";
+import "./index.css";
 
 const KlasHaftalik = () => {
   const [data, setData] = useState([]);
@@ -86,11 +87,14 @@ const KlasHaftalik = () => {
 
   const dataSource = weeksData.map((week) => {
     const weekSalesData = calculateWeekSales(week);
+    const isCurrentWeek = week === currentWeek;
+
     return {
       key: week,
       week,
       ...weekSalesData.quantityByName,
       totalSales: weekSalesData.totalSales,
+      isCurrentWeek: isCurrentWeek, // Ekledik
     };
   });
 
@@ -102,6 +106,7 @@ const KlasHaftalik = () => {
           dataSource={dataSource}
           pagination={false}
           style={{ padding: '10px' }}
+          rowClassName={(record) => (record.isCurrentWeek ? "current-week-row" : "")} // Ekledik
         />
       )}
     </div>

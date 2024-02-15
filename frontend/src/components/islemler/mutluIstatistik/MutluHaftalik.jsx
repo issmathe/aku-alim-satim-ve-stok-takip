@@ -1,112 +1,118 @@
-import React, { useState, useEffect, useMemo, useCallback } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
-import moment from 'moment';
+import moment from "moment";
+import { Table } from "antd";
+import "./index.css";
 
 const MutluHaftalik = () => {
-  const baslangicTarihi = "2024-01-01";
-  const haftaSayisi = 52;
-
-  const akuTurleri = useMemo(() => [
-    "60 AH AKÜ",
-    "72 AH AKÜ",
-    "105 AH AKÜ",
-    "135 AH AKÜ",
-    "180 AH AKÜ",
-  ], []);
-
-  const haftaNumarasi = useCallback((tarih) => {
-    return Math.ceil(moment(tarih).diff(moment(baslangicTarihi), 'weeks', true));
-  }, [baslangicTarihi]);
-
-  const [tablo, setTablo] = useState(Array.from({ length: haftaSayisi + 1 }, () => Array(akuTurleri.length).fill(0)));
+  const [data, setData] = useState([]);
+  const [currentWeek, setCurrentWeek] = useState(null);
 
   useEffect(() => {
-    const fetchAkuAdetAndCalculateTable = async () => {
+    const fetchData = async () => {
       try {
         const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api/mutlu/kayit`);
-
-        const newTablo = Array.from({ length: haftaSayisi + 1 }, () => Array(akuTurleri.length).fill(0));
-        response.data.forEach((item) => {
-          const hafta = haftaNumarasi(item.satisTarihi);
-          const akuTurIndex = akuTurleri.indexOf(item.aku);
-          if (hafta > 0 && hafta <= haftaSayisi && akuTurIndex !== -1) {
-            newTablo[hafta][akuTurIndex] += 1;
-          }
-        });
-        setTablo(newTablo);
+        setData(response.data);
+        const currentWeekNumber = moment().isoWeek();
+        setCurrentWeek(currentWeekNumber);
       } catch (error) {
         console.error("Veri getirme hatası:", error);
       }
     };
 
-    fetchAkuAdetAndCalculateTable();
-  }, [haftaNumarasi, haftaSayisi, akuTurleri]);
+    fetchData();
+  }, []);
 
-  const currentWeek = moment().isoWeek();
+  const calculateWeekSales = (weekNumber) => {
+    const weekSales = {
+      totalSales: 0,
+      totalPieces: 0,
+      salesByPaymentType: {
+        visa: 0,
+        nakit: 0,
+        veresiye: 0,
+      },
+      quantityByName: {},
+    };
 
-  const haftalikToplamSatir = tablo.map((hafta, haftaIndex) => {
-    const haftalikToplam = hafta.reduce((acc, adet) => acc + adet, 0);
-    return <td key={haftaIndex} style={{ border: "1px solid #ddd", padding: "8px" }}>{haftalikToplam}</td>;
+    [    "60 AH AKÜ",
+    "72 AH AKÜ",
+    "105 AH AKÜ",
+    "135 AH AKÜ",
+    "180 AH AKÜ",].forEach(product => {
+      weekSales.quantityByName[product] = 0;
+    });
+
+    data.forEach((belge) => {
+      const hafta = moment(belge.createdAt).isoWeek();
+
+      if (hafta === weekNumber) {
+        weekSales.totalSales += 1;
+        weekSales.totalPieces += belge.piece;
+
+        if (belge.paymentType === 'visa') {
+          weekSales.salesByPaymentType.visa += 1;
+        } else if (belge.paymentType === 'nakit') {
+          weekSales.salesByPaymentType.nakit += 1;
+        } else if (belge.paymentType === 'veresiye') {
+          weekSales.salesByPaymentType.veresiye += 1;
+        }
+
+        if (weekSales.quantityByName.hasOwnProperty(belge.aku)) {
+          weekSales.quantityByName[belge.aku] += 1;
+        }
+      }
+    });
+
+    return weekSales;
+  };
+
+  const weeksData = Array.from({ length: 52 }, (_, index) => index + 1);
+
+  const columns = [
+    {
+      title: "Hafta",
+      dataIndex: "week",
+      key: "week",
+      render: (week) => `Hafta ${week}`,
+    },
+    ...Object.keys(calculateWeekSales(currentWeek).quantityByName).map((product, index) => ({
+      title: `Adet (${product})`,
+      dataIndex: product,
+      key: index,
+    })),
+    {
+      title: "Toplam Satış",
+      dataIndex: "totalSales",
+      key: "totalSales",
+      render: (_, record) => record.totalSales,
+    },
+  ];
+
+  const dataSource = weeksData.map((week) => {
+    const weekSalesData = calculateWeekSales(week);
+    const isCurrentWeek = week === currentWeek;
+
+    return {
+      key: week,
+      week,
+      ...weekSalesData.quantityByName,
+      totalSales: weekSalesData.totalSales,
+      isCurrentWeek: isCurrentWeek, // Ekledik
+    };
   });
 
   return (
-    <div style={{ padding: "10px" }}>
-      <div>
-        <h2 style={{ textAlign: "center", color: "#144b82" }}>
-          Haftalık Satış
-        </h2>
-        <table
-          border="1"
-          style={{
-            borderCollapse: "collapse",
-            width: "100%",
-          }}
-        >
-          <thead>
-            <tr>
-              <th style={{ border: "1px solid #ddd", padding: "8px" }}>
-                Hafta
-              </th>
-              {akuTurleri.map((akuTur, index) => (
-                <th
-                  key={index}
-                  style={{ border: "1px solid #ddd", padding: "8px" }}
-                >
-                  {akuTur}
-                </th>
-              ))}
-              <th style={{ border: "1px solid #ddd", padding: "8px" }}>
-                Haftalık Toplam
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {tablo.map((hafta, haftaIndex) => (
-              <tr
-                key={haftaIndex}
-                style={{
-                  background:
-                    haftaIndex === currentWeek ? "yellow" : "transparent",
-                  borderBottom: "1px solid #ddd",
-                }}
-              >
-                <td style={{ border: "1px solid #ddd", padding: "5px" }}>
-                  {haftaIndex}
-                </td>
-                {hafta.map((adet, adetIndex) => (
-                  <td
-                    key={adetIndex}
-                    style={{ border: "1px solid #ddd", padding: "8px" }}
-                  >
-                    {adet}
-                  </td>
-                ))}
-                {haftalikToplamSatir[haftaIndex]}
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+    <div>
+      {currentWeek && (
+        <Table
+          columns={columns}
+          dataSource={dataSource}
+          pagination={false}
+          style={{ padding: '10px' }}
+          rowClassName={(record) => (record.isCurrentWeek ? "current-week-row" : "")} // Ekledik
+        />
+      )}
     </div>
   );
 };
