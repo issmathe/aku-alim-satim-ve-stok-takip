@@ -2,7 +2,6 @@ import React from "react";
 import Header from "../components/header/Header.jsx";
 import MutluAku from "../components/homeGosterilecekler/MutluAku.jsx";
 import KlasAku from "../components/homeGosterilecekler/KlasAku.jsx";
-// import KlasHaftalik from "../components/homeGosterilecekler/haftalikVeri/KlasHaftalik.jsx";
 import InciAku from "../components/homeGosterilecekler/InciAku.jsx";
 import VartaAku from "../components/homeGosterilecekler/VartaAku.jsx";
 import KraftAku from "../components/homeGosterilecekler/KraftAku.jsx";
@@ -30,7 +29,6 @@ const Home = () => {
           <EuroreparAkuAku/>
         </div>
       </div>
-      {/* <KlasHaftalik/> */}
     </div>
   );
 };
