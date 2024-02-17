@@ -43,7 +43,7 @@ const Veresiye = () => {
           axios.put(`${process.env.REACT_APP_SERVER_URL}/api/duracel/kayit/${id}`, { paymentType: "nakit" }),
         ];
         
-        
+        window.location.reload(updateRequests); // Doğru kullanım
 
         setVeresiyeData((prevData) =>
           prevData.map((item) =>
@@ -51,7 +51,7 @@ const Veresiye = () => {
           )
           
         );
-        window.location.reload(updateRequests); // Doğru kullanım
+
 
       } else {
         console.log("İşlem iptal edildi.");
