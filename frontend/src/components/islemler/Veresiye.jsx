@@ -14,7 +14,8 @@ const Veresiye = () => {
           axios.get(`${process.env.REACT_APP_SERVER_URL}/api/inci/kayit`),
           axios.get(`${process.env.REACT_APP_SERVER_URL}/api/varta/kayit`),
           axios.get(`${process.env.REACT_APP_SERVER_URL}/api/kraft/kayit`),
-          axios.get(`${process.env.REACT_APP_SERVER_URL}/api/duracel/kayit`)
+          axios.get(`${process.env.REACT_APP_SERVER_URL}/api/duracel/kayit`),
+          axios.get(`${process.env.REACT_APP_SERVER_URL}/api/eurorepar/kayit`),
         ]);
 
         const veresiyeRecords = responses
@@ -41,6 +42,8 @@ const Veresiye = () => {
           axios.put(`${process.env.REACT_APP_SERVER_URL}/api/varta/kayit/${id}`, { paymentType: "nakit" }),
           axios.put(`${process.env.REACT_APP_SERVER_URL}/api/kraft/kayit/${id}`, { paymentType: "nakit" }),
           axios.put(`${process.env.REACT_APP_SERVER_URL}/api/duracel/kayit/${id}`, { paymentType: "nakit" }),
+          axios.put(`${process.env.REACT_APP_SERVER_URL}/api/eurorepar/kayit/${id}`, { paymentType: "nakit" }),
+
         ];
         
         window.location.reload(updateRequests); // Doğru kullanım
