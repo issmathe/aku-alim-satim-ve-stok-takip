@@ -10,6 +10,7 @@ import EuroreparAkuAku from "../components/homeGosterilecekler/EuroreparAku.jsx"
 import GenelToplam from "../components/homeGosterilecekler/genelToplam/GenelToplam.jsx";
 import GenelToplamAylik from "../components/homeGosterilecekler/genelToplam/GenelToplamAdet.jsx";
 import GenelToplamAylikSatis from "../components/homeGosterilecekler/genelToplam/GenelToplamSatis.jsx";
+import GenelToplamMiktar from "../components/homeGosterilecekler/genelToplam/GenelToplamMiktar .jsx";
 
 const Home = () => {
   return (
@@ -32,9 +33,13 @@ const Home = () => {
         Akü Stok Takip Programı
       </h4>
       <div style={{ display: "flex", justifyContent: "center", gap: "43px" }}>
-        <span style={{marginTop:"14px"}}><GenelToplam/></span>
+        <div >
+        <GenelToplam/>
+        <GenelToplamMiktar/>
+        </div>
         <GenelToplamAylikSatis />
         <GenelToplamAylik />
+
       </div>
       <div
         className="text-center text-warning pt-2"

@@ -1,6 +1,6 @@
 import React from 'react'
 import Header from '../../components/header/Header'
-import InciSonuc from '../../components/islemler/inciIstatistik/InciSonuc'
+import InciSonuc from '../../components/istatistik/inciIstatistik/InciSonuc'
 
 
 const InciSonucPage = () => {

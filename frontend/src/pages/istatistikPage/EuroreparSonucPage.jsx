@@ -1,6 +1,6 @@
 import React from "react";
 import Header from "../../components/header/Header";
-import EuroreparSonuc from "../../components/islemler/euroreparIstatistik/EuroreparSonuc";
+import EuroreparSonuc from "../../components/istatistik/euroreparIstatistik/EuroreparSonuc";
 
 const EuroreparSonucPage = () => {
   return (

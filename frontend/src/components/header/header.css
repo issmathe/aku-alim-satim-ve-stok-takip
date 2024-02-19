@@ -8,21 +8,6 @@
 }
 /* Add this CSS to your existing stylesheet or create a new one */
 
-@media (max-width: 768px) {
-    /* Hide the specified list items on screens with a width of 768 pixels or less */
-    .header ul li:nth-child(2),
-    .header ul li:nth-child(3),
-    .header ul li:nth-child(4),
-    .header ul li:nth-child(5),
-    .header ul li:nth-child(6),
-    .header ul li:nth-child(7),
-    .header ul li:nth-child(8),
-    .header ul li:nth-child(9),
-    .header ul li:nth-child(10) {
-      display: none;
-    }
-  }
-  
 /* Temel Sayfa Stili */
 body {
     font-family: Arial, sans-serif;

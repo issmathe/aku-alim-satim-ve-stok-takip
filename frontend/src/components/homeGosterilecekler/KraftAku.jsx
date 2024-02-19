@@ -295,12 +295,28 @@ const KraftAku = () => {
             </h1>
           </div>
           <hr />
-          <p>Haftalık Satış Fiyatı: <span style={{backgroundColor:"#55edc9",borderRadius:"5px"}}>{currentWeekSalesData.totalPieces}</span></p>
-          <p>Haftalık Satış Adeti: <span style={{backgroundColor:"#55edc9",borderRadius:"5px"}}>{currentWeekSalesData.totalSales}</span></p>
-          <p>Önceki Hafta Satış Adeti: <span style={{backgroundColor:"#f39a9a",borderRadius:"5px"}}>{previousWeekSalesData.totalSales}</span></p>
-
+          <div style={{backgroundColor:"#a5859f",borderRadius:"3px"}}>
+            <p>
+              Haftalık Satış Tutarı:{" "}
+              <span style={{ backgroundColor: "#10f604", borderRadius: "5px" }}>
+                {currentWeekSalesData.totalPieces}
+              </span>
+            </p>
+            <p>
+              Haftalık Satış Adeti:{" "}
+              <span style={{ backgroundColor: "#10f604", borderRadius: "5px" }}>
+                {currentWeekSalesData.totalSales}
+              </span>
+            </p>
+            <p>
+              Önceki Hafta Satış Adeti:{" "}
+              <span style={{ backgroundColor: "#f39a9a", borderRadius: "5px" }}>
+                {previousWeekSalesData.totalSales}
+              </span>
+            </p>
+          </div>
           <hr />
-          <p>Aylık Satış Fiyatı: <span style={{backgroundColor:"#55edc9",borderRadius:"5px"}}>{currentMonthSalesData.totalPieces}</span></p>
+          <p>Aylık Satış Tutarı: <span style={{backgroundColor:"#55edc9",borderRadius:"5px"}}>{currentMonthSalesData.totalPieces}</span></p>
           <p>Aylık Satış Adeti: <span style={{backgroundColor:"#55edc9",borderRadius:"5px"}}>{currentMonthSalesData.totalSales}</span> </p>
           <p>Önceki Ay Satış Adeti: <span style={{backgroundColor:"#f39a9a",borderRadius:"5px"}}>{previousMonthSalesData.totalSales}</span></p>
           <hr />

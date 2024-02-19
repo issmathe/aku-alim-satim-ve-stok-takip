@@ -1,6 +1,6 @@
 import React from 'react'
 import Header from '../../components/header/Header'
-import KraftSonuc from '../../components/islemler/kraftIstatistik/KraftSonuc'
+import KraftSonuc from '../../components/istatistik/kraftIstatistik/KraftSonuc'
 
 const KraftSonucPage = () => {
   return (

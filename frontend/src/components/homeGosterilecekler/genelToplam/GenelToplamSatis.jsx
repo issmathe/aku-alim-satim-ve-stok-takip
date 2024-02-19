@@ -123,7 +123,7 @@ const GenelToplamAylikSatis = () => {
             color: "black",
           }}
         >
-          Bu aydaki toplam satış:{" "}
+          Bu aydaki toplam tutar:{" "}
           <span style={{ color: "white", backgroundColor: "green" }}>
             {totalMonthlySalesPrice}₺
           </span>

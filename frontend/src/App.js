@@ -13,16 +13,16 @@ import KraftAkuIslemleri from "./pages/kraftAkuPage/KraftAkuIslemleri.jsx"
 import KraftAkuSatim from "./pages/kraftAkuPage/KraftAkuSatim.jsx"
 import DuracelAkuIslemleri from "./pages/duracelAkuPage/duracelAkuIslemleri.jsx";
 import DuracelAkuSatim from "./pages/duracelAkuPage/duracelAkuSatim.jsx";
-import VeresiyePage from "./pages/islemlerPage/VeresiyePage.jsx";
-import KlasSonucPage from "./pages/islemlerPage/KlasSonucPage.jsx";
-import MutluSonucPage from "./pages/islemlerPage/MutluSonucPage.jsx";
-import InciSonucPage from "./pages/islemlerPage/InciSonucPage.jsx";
-import VartaSonucPage from "./pages/islemlerPage/VartaSonucPage.jsx";
-import KraftSonucPage from "./pages/islemlerPage/KraftSonucPage.jsx";
-import DuracelSonucPage from "./pages/islemlerPage/DuracelSonucPage.jsx";
+import VeresiyePage from "./pages/veresiye/VeresiyePage.jsx";
+import KlasSonucPage from "./pages/istatistikPage/KlasSonucPage.jsx";
+import MutluSonucPage from "./pages/istatistikPage/MutluSonucPage.jsx";
+import InciSonucPage from "./pages/istatistikPage/InciSonucPage.jsx";
+import VartaSonucPage from "./pages/istatistikPage/VartaSonucPage.jsx";
+import KraftSonucPage from "./pages/istatistikPage/KraftSonucPage.jsx";
+import DuracelSonucPage from "./pages/istatistikPage/DuracelSonucPage.jsx";
 import EuroreparAkuIslemleri from "./pages/euroreparAkuPage/EuroreparAkuIslemleri.jsx";
 import EuroreparAkuSatim from "./pages/euroreparAkuPage/EuroreparAkuSatim.jsx";
-import EuroreparSonucPage from "./pages/islemlerPage/EuroreparSonucPage.jsx";
+import EuroreparSonucPage from "./pages/istatistikPage/EuroreparSonucPage.jsx";
 
 
 

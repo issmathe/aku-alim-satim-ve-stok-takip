@@ -1,6 +1,6 @@
 import React from "react";
 import Header from "../../components/header/Header";
-import VartaSonuc from "../../components/islemler/vartaIstatistik/VartaSonuc";
+import VartaSonuc from "../../components/istatistik/vartaIstatistik/VartaSonuc";
 
 const VartaSonucPage = () => {
   return (

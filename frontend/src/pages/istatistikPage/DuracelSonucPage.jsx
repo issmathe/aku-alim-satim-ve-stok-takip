@@ -1,6 +1,6 @@
 import React from 'react'
 import Header from '../../components/header/Header'
-import DuracelSonuc from '../../components/islemler/duracelIstatistik/DuracelSonuc'
+import DuracelSonuc from '../../components/istatistik/duracelIstatistik/DuracelSonuc'
 
 const DuracelSonucPage = () => {
   return (

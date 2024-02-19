@@ -57,7 +57,10 @@ const KlasAku = () => {
         );
         setTotalQuantity(totalQuantityResponse.data.length);
       } catch (error) {
-        console.error("Toplam satış veya adet verisini çekerken hata oluştu:", error.message);
+        console.error(
+          "Toplam satış veya adet verisini çekerken hata oluştu:",
+          error.message
+        );
       }
     };
 
@@ -67,7 +70,9 @@ const KlasAku = () => {
   useEffect(() => {
     const fetchWeeklySales = async () => {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api/klas/kayit`);
+        const response = await axios.get(
+          `${process.env.REACT_APP_SERVER_URL}/api/klas/kayit`
+        );
         const currentWeekNumber = moment().isoWeek();
 
         const currentWeekSalesData = response.data.reduce(
@@ -112,7 +117,9 @@ const KlasAku = () => {
   useEffect(() => {
     const fetchMonthlySales = async () => {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api/klas/kayit`);
+        const response = await axios.get(
+          `${process.env.REACT_APP_SERVER_URL}/api/klas/kayit`
+        );
         const currentMonthNumber = moment().month() + 1;
 
         const currentMonthSalesData = response.data.reduce(
@@ -157,7 +164,9 @@ const KlasAku = () => {
   useEffect(() => {
     const fetchPreviousWeekSales = async () => {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api/klas/kayit`);
+        const response = await axios.get(
+          `${process.env.REACT_APP_SERVER_URL}/api/klas/kayit`
+        );
         const previousWeekNumber = moment().isoWeek() - 1;
 
         const previousWeekSalesData = response.data.reduce(
@@ -202,7 +211,9 @@ const KlasAku = () => {
   useEffect(() => {
     const fetchPreviousMonthSales = async () => {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api/klas/kayit`);
+        const response = await axios.get(
+          `${process.env.REACT_APP_SERVER_URL}/api/klas/kayit`
+        );
         const currentMonthNumber = moment().month() + 1;
         const previousMonthNumber = currentMonthNumber - 1;
 
@@ -295,14 +306,45 @@ const KlasAku = () => {
             </h1>
           </div>
           <hr />
-          <p>Haftalık Satış Fiyatı: <span style={{backgroundColor:"#55edc9",borderRadius:"5px"}}>{currentWeekSalesData.totalPieces}</span></p>
-          <p>Haftalık Satış Adeti: <span style={{backgroundColor:"#55edc9",borderRadius:"5px"}}>{currentWeekSalesData.totalSales}</span></p>
-          <p>Önceki Hafta Satış Adeti: <span style={{backgroundColor:"#f39a9a",borderRadius:"5px"}}>{previousWeekSalesData.totalSales}</span></p>
-
+          <div style={{backgroundColor:"#a5859f",borderRadius:"3px"}}>
+            <p>
+              Haftalık Satış Tutarı:{" "}
+              <span style={{ backgroundColor: "#10f604", borderRadius: "5px" }}>
+                {currentWeekSalesData.totalPieces}
+              </span>
+            </p>
+            <p>
+              Haftalık Satış Adeti:{" "}
+              <span style={{ backgroundColor: "#10f604", borderRadius: "5px" }}>
+                {currentWeekSalesData.totalSales}
+              </span>
+            </p>
+            <p>
+              Önceki Hafta Satış Adeti:{" "}
+              <span style={{ backgroundColor: "#f39a9a", borderRadius: "5px" }}>
+                {previousWeekSalesData.totalSales}
+              </span>
+            </p>
+          </div>
           <hr />
-          <p>Aylık Satış Fiyatı: <span style={{backgroundColor:"#55edc9",borderRadius:"5px"}}>{currentMonthSalesData.totalPieces}</span></p>
-          <p>Aylık Satış Adeti: <span style={{backgroundColor:"#55edc9",borderRadius:"5px"}}>{currentMonthSalesData.totalSales}</span> </p>
-          <p>Önceki Ay Satış Adeti: <span style={{backgroundColor:"#f39a9a",borderRadius:"5px"}}>{previousMonthSalesData.totalSales}</span></p>
+          <p>
+            Aylık Satış Tutarı:{" "}
+            <span style={{ backgroundColor: "#55edc9", borderRadius: "5px" }}>
+              {currentMonthSalesData.totalPieces}
+            </span>
+          </p>
+          <p>
+            Aylık Satış Adeti:{" "}
+            <span style={{ backgroundColor: "#55edc9", borderRadius: "5px" }}>
+              {currentMonthSalesData.totalSales}
+            </span>{" "}
+          </p>
+          <p>
+            Önceki Ay Satış Adeti:{" "}
+            <span style={{ backgroundColor: "#f39a9a", borderRadius: "5px" }}>
+              {previousMonthSalesData.totalSales}
+            </span>
+          </p>
           <hr />
           <Button type="primary">
             <Link to="/klasAkuSatim" style={{ color: "white" }}>
