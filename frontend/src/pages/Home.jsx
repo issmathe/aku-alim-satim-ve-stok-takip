@@ -11,6 +11,7 @@ import GenelToplam from "../components/homeGosterilecekler/genelToplam/GenelTopl
 import GenelToplamAylik from "../components/homeGosterilecekler/genelToplam/GenelToplamAdet.jsx";
 import GenelToplamAylikSatis from "../components/homeGosterilecekler/genelToplam/GenelToplamSatis.jsx";
 import GenelToplamMiktar from "../components/homeGosterilecekler/genelToplam/GenelToplamMiktar .jsx";
+import GenelToplamHaftalik from "../components/homeGosterilecekler/genelToplam/GenelToplamHaftalik.jsx";
 
 const Home = () => {
   return (
@@ -37,9 +38,9 @@ const Home = () => {
         <GenelToplam/>
         <GenelToplamMiktar/>
         </div>
+        <GenelToplamHaftalik/>
         <GenelToplamAylikSatis />
         <GenelToplamAylik />
-
       </div>
       <div
         className="text-center text-warning pt-2"
