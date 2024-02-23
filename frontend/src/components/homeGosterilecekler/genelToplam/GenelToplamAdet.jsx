@@ -91,7 +91,7 @@ const GenelToplamAylik = () => {
           }}
         >
           {" "}
-          Bu aydaki toplam miktarı:{" "}
+          Bu aydaki toplam satış:{" "}
           <span style={{ color: "white", backgroundColor: "green" }}>
             {totalMonthlySales}
           </span>

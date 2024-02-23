@@ -92,7 +92,7 @@ const GenelToplamHaftalik = () => {
           }}
         >
           {" "}
-          Bu haftaki toplam miktarı:{" "}
+          Bu haftaki toplam satış:{" "}
           <span style={{ color: "white", backgroundColor: "green" }}>
             {totalWeeklySales}
           </span>

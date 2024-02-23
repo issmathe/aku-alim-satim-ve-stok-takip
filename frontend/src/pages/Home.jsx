@@ -12,36 +12,56 @@ import GenelToplamAylik from "../components/homeGosterilecekler/genelToplam/Gene
 import GenelToplamAylikSatis from "../components/homeGosterilecekler/genelToplam/GenelToplamSatis.jsx";
 import GenelToplamMiktar from "../components/homeGosterilecekler/genelToplam/GenelToplamMiktar .jsx";
 import GenelToplamHaftalik from "../components/homeGosterilecekler/genelToplam/GenelToplamHaftalik.jsx";
+import GunlukToplam from "../components/homeGosterilecekler/genelToplam/GunlukToplam.jsx";
 
 const Home = () => {
   return (
     <div style={{ height: "100vh", background: "#364d79" }}>
       <Header />
-      <h4
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          color: "#ffffff",
-          backgroundColor: "#677c8c",
-          width: "300px",
-          margin: "auto",
-          marginTop:"5px",
-          marginBottom:"5px",
-          borderRadius: "12px",
-        }}
+      <div
+        style={{ display: "flex", justifyContent: "center", marginTop: "5px" }}
       >
-        Akü Stok Takip Programı
-      </h4>
-      <div style={{ display: "flex", justifyContent: "center", gap: "43px" }}>
-        <div >
-        <GenelToplam/>
-        <GenelToplamMiktar/>
-        </div>
-        <GenelToplamHaftalik/>
-        <GenelToplamAylikSatis />
-        <GenelToplamAylik />
+        <GunlukToplam />
       </div>
+      <div style={{ display: "flex", justifyContent: "center", gap: "43px" }}>
+        <div
+          style={{
+            backgroundColor: "#86b4dd",
+            border: "1px solid white",
+            paddingTop: "5px",
+            borderRadius: "5px",
+          }}
+        >
+          <GenelToplam />
+          <GenelToplamMiktar />
+        </div>
+        <div style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            gap: "9px",
+            backgroundColor: "#86b4dd",
+            border: "1px solid white",
+            borderRadius: "5px",
+            paddingTop:"4px"
+          }}><GenelToplamHaftalik /></div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            gap: "9px",
+            backgroundColor: "#86b4dd",
+            border: "1px solid white",
+            borderRadius: "5px",
+            paddingTop:"4px"
+          }}
+        >
+          <GenelToplamAylikSatis />
+          <GenelToplamAylik />
+        </div>
+      </div>
+
       <div
         className="text-center text-warning pt-2"
         style={{
