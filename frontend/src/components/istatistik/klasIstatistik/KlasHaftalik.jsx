@@ -106,7 +106,7 @@ const KlasHaftalik = () => {
           dataSource={dataSource}
           pagination={false}
           style={{ padding: '10px' }}
-          rowClassName={(record) => (record.isCurrentWeek ? "current-week-row" : "")} // Ekledik
+          rowClassName={(record) => (record.isCurrentWeek ? "current-week-row" : "")} // ilgili hafta sarı renk görünür
         />
       )}
     </div>

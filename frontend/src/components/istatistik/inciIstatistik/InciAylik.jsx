@@ -1,94 +1,133 @@
-import React, { useState, useEffect, useMemo } from "react";
-import moment from 'moment';
-import 'moment/locale/tr'; // Türkçe dil desteği
+// InciAylik.jsx
+
+import React, { useEffect, useState } from "react";
 import axios from "axios";
+import moment from "moment";
+import { Table } from "antd";
 
 const InciAylik = () => {
-  const [aylikSayilar, setAylikSayilar] = useState([]);
-  const [monthlyTotal, setMonthlyTotal] = useState([]);
-
-  const akuTurleri = useMemo(() => [
-    "42 AH İNCE ",
-    "50 AH AKÜ",
-    "60 AH AKÜ",
-    "60 AH DAR",
-    "72 AH AKÜ",
-    "105 AH AKÜ",
-    "135 AH AKÜ",
-    "180 AH AKÜ",
-  ], []);
+  const [data, setData] = useState([]);
+  const [currentMonth, setCurrentMonth] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api/inci/kayit`);
-        const yeniAylikSayilar = Array.from({ length: 12 }, () => Array(akuTurleri.length).fill(0));
-
-        response.data.forEach((item) => {
-          const ayIndex = moment(item.satisTarihi).month();
-          const akuTurIndex = akuTurleri.indexOf(item.aku);
-
-          if (ayIndex >= 0 && ayIndex < 12 && akuTurIndex !== -1) {
-            yeniAylikSayilar[ayIndex][akuTurIndex] += 1;
-          }
-        });
-
-        setAylikSayilar(yeniAylikSayilar);
+        const response = await axios.get(
+          `${process.env.REACT_APP_SERVER_URL}/api/inci/kayit`
+        );
+        setData(response.data);
+        const currentMonthNumber = moment().month() + 1; // moment month starts from 0
+        setCurrentMonth(currentMonthNumber);
       } catch (error) {
         console.error("Veri getirme hatası:", error);
       }
     };
 
     fetchData();
-  }, [akuTurleri]);
+  }, []);
 
-  useEffect(() => {
-    const monthlyTotal = Array(12).fill(0);
+  const calculateMonthSales = (monthNumber) => {
+    const monthSales = {
+      totalSales: 0,
+      totalPieces: 0,
+      salesByPaymentType: {
+        visa: 0,
+        nakit: 0,
+        veresiye: 0,
+      },
+      quantityByName: {},
+    };
 
-    aylikSayilar.forEach((ay, ayIndex) => {
-      ay.forEach((sayi, sayiIndex) => {
-        monthlyTotal[ayIndex] += sayi;
-      });
+    [
+      "42 AH İNCE ",
+      "50 AH AKÜ",
+      "60 AH AKÜ",
+      "60 AH DAR",
+      "72 AH AKÜ",
+      "105 AH AKÜ",
+      "135 AH AKÜ",
+      "180 AH AKÜ",
+    ].forEach((product) => {
+      monthSales.quantityByName[product] = 0;
     });
 
-    setMonthlyTotal(monthlyTotal);
-  }, [aylikSayilar]);
+    data.forEach((belge) => {
+      const ay = moment(belge.createdAt).month() + 1; // moment month starts from 0
 
-  const currentMonthIndex = moment().month(); // Güncellendi
+      if (ay === monthNumber) {
+        monthSales.totalSales += 1;
+        monthSales.totalPieces += belge.piece;
+
+        if (belge.paymentType === "visa") {
+          monthSales.salesByPaymentType.visa += 1;
+        } else if (belge.paymentType === "nakit") {
+          monthSales.salesByPaymentType.nakit += 1;
+        } else if (belge.paymentType === "veresiye") {
+          monthSales.salesByPaymentType.veresiye += 1;
+        }
+
+        if (monthSales.quantityByName.hasOwnProperty(belge.aku)) {
+          monthSales.quantityByName[belge.aku] += 1;
+        }
+      }
+    });
+
+    return monthSales;
+  };
+
+  const monthsData = Array.from({ length: 12 }, (_, index) => index + 1);
+
+  const columns = [
+    {
+      title: "Ay",
+      dataIndex: "month",
+      key: "month",
+      render: (month) =>
+        moment()
+          .month(month - 1)
+          .format("MMMM"), // Format ay ismini al
+    },
+    ...Object.keys(calculateMonthSales(currentMonth).quantityByName).map(
+      (product, index) => ({
+        title: `Adet (${product})`,
+        dataIndex: product,
+        key: index,
+      })
+    ),
+    {
+      title: "Toplam Satış",
+      dataIndex: "totalSales",
+      key: "totalSales",
+      render: (_, record) => record.totalSales,
+    },
+  ];
+
+  const dataSource = monthsData.map((month) => {
+    const monthSalesData = calculateMonthSales(month);
+    const isCurrentMonth = month === currentMonth;
+
+    return {
+      key: month,
+      month,
+      ...monthSalesData.quantityByName,
+      totalSales: monthSalesData.totalSales,
+      isCurrentMonth: isCurrentMonth,
+    };
+  });
 
   return (
     <div>
-      <h2 style={{ textAlign: "center", color: "#144b82" }}>Aylık Akü Sayıları</h2>
-      <table border="1" style={{ borderCollapse: "collapse", width: "100%" }}>
-        <thead>
-          <tr>
-            <th style={{ border: "1px solid #ddd", padding: "8px" }}>Ay</th>
-            {akuTurleri.map((akuTur, index) => (
-              <th key={index} style={{ border: "1px solid #ddd", padding: "8px" }}>
-                {akuTur}
-              </th>
-            ))}
-            <th style={{ border: "1px solid #ddd", padding: "8px" }}>Toplam</th>
-          </tr>
-        </thead>
-        <tbody>
-          {aylikSayilar.map((ay, ayIndex) => (
-            <tr key={ayIndex} style={{ background: ayIndex === currentMonthIndex ? "yellow" : "transparent" }}>
-              <td style={{ border: "1px solid #ddd", padding: "5px" }}>
-                {moment().month(ayIndex).format("MMMM")}
-              </td>
-              {ay.map((sayi, sayiIndex) => (
-                <td key={sayiIndex} style={{ border: "1px solid #ddd", padding: "8px" }}>
-                  {sayi}
-                </td>
-              ))}
-              <td style={{ border: "1px solid #ddd", padding: "8px" }}>
-                {monthlyTotal[ayIndex]}
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      {currentMonth && (
+        <Table
+          columns={columns}
+          dataSource={dataSource}
+          pagination={false}
+          style={{ padding: "10px" }}
+          rowClassName={(record) =>
+            record.isCurrentMonth ? "current-week-row" : ""
+          }
+        />
+      )}
     </div>
   );
 };
