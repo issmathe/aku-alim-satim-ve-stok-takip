@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import moment from "moment";
 import { Table } from "antd";
+import "moment/locale/tr";
 
 const KlasAylik = () => {
   const [data, setData] = useState([]);
@@ -12,7 +13,9 @@ const KlasAylik = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api/klas/kayit`);
+        const response = await axios.get(
+          `${process.env.REACT_APP_SERVER_URL}/api/klas/kayit`
+        );
         setData(response.data);
         const currentMonthNumber = moment().month() + 1; // moment month starts from 0
         setCurrentMonth(currentMonthNumber);
@@ -36,7 +39,14 @@ const KlasAylik = () => {
       quantityByName: {},
     };
 
-    ["KLAS 60 AH AKÜ", "KLAS 60 AH DAR", "KLAS 70 AH EFB", "KLAS 72 AH AKÜ", "KLAS 90 AH AKÜ", "KLAS 100 AH AKÜ", "KLAS 105 AH AKÜ", "KLAS 135 AH AKÜ", "KLAS 150 AH AKÜ", "KLAS 180 AH AKÜ", "KLAS 225 AH AKÜ"].forEach(product => {
+    [
+      "45 DAR AKÜ ",
+      "60 AH AKÜ ",
+      "70 EFB AKÜ",
+      "70 AGM AKÜ",
+      "72 AH AKÜ",
+      "92 AGM AKÜ",
+    ].forEach((product) => {
       monthSales.quantityByName[product] = 0;
     });
 
@@ -47,11 +57,11 @@ const KlasAylik = () => {
         monthSales.totalSales += 1;
         monthSales.totalPieces += belge.piece;
 
-        if (belge.paymentType === 'visa') {
+        if (belge.paymentType === "visa") {
           monthSales.salesByPaymentType.visa += 1;
-        } else if (belge.paymentType === 'nakit') {
+        } else if (belge.paymentType === "nakit") {
           monthSales.salesByPaymentType.nakit += 1;
-        } else if (belge.paymentType === 'veresiye') {
+        } else if (belge.paymentType === "veresiye") {
           monthSales.salesByPaymentType.veresiye += 1;
         }
 
@@ -71,13 +81,18 @@ const KlasAylik = () => {
       title: "Ay",
       dataIndex: "month",
       key: "month",
-      render: (month) => moment().month(month - 1).format("MMMM"), // Format ay ismini al
+      render: (month) =>
+        moment()
+          .month(month - 1)
+          .format("MMMM"), // Format ay ismini al
     },
-    ...Object.keys(calculateMonthSales(currentMonth).quantityByName).map((product, index) => ({
-      title: `Adet (${product})`,
-      dataIndex: product,
-      key: index,
-    })),
+    ...Object.keys(calculateMonthSales(currentMonth).quantityByName).map(
+      (product, index) => ({
+        title: `Adet (${product})`,
+        dataIndex: product,
+        key: index,
+      })
+    ),
     {
       title: "Toplam Satış",
       dataIndex: "totalSales",
@@ -106,8 +121,10 @@ const KlasAylik = () => {
           columns={columns}
           dataSource={dataSource}
           pagination={false}
-          style={{ padding: '10px' }}
-          rowClassName={(record) => (record.isCurrentMonth ? "current-week-row" : "")}
+          style={{ padding: "10px" }}
+          rowClassName={(record) =>
+            record.isCurrentMonth ? "current-week-row" : ""
+          }
         />
       )}
     </div>

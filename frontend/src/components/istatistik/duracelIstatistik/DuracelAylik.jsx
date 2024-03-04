@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import moment from "moment";
 import { Table } from "antd";
+import "moment/locale/tr";
 
 const DuracelAylik = () => {
   const [data, setData] = useState([]);

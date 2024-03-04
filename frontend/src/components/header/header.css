@@ -19,7 +19,7 @@ body {
 /* Header Stili */
 @media only screen and (max-width: 768px) {
     .header {
-      height: 350px !important; 
+      height: 450px !important; 
     }
   }
 header {
