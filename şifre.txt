@@ -1,2 +1,10 @@
-isim orhan
-şifre wmLwiX7TznLsXyRy
+Bu proje:
+mongodb de 
+eraslanmongodb@gmail.com
+kayıtlı hesapta;
+proje adı: orhanOzkesStokTakip
+username: orhan
+Password:0oSIkVoEImpGIilH
+bağlantı url:
+mongodb+srv://orhan:0oSIkVoEImpGIilH@cluster0.cikwfms.mongodb.net/
+
