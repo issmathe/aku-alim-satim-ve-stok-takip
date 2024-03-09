@@ -13,63 +13,68 @@ import GenelToplamAylikSatis from "../components/homeGosterilecekler/genelToplam
 import GenelToplamMiktar from "../components/homeGosterilecekler/genelToplam/GenelToplamMiktar .jsx";
 import GenelToplamHaftalik from "../components/homeGosterilecekler/genelToplam/GenelToplamHaftalik.jsx";
 import GunlukToplam from "../components/homeGosterilecekler/genelToplam/GunlukToplam.jsx";
+import "./home.css";
 
 const Home = () => {
   return (
     <div style={{ height: "100vh", background: "#364d79" }}>
       <Header />
-      <div
-        style={{ display: "flex", justifyContent: "center", marginTop: "5px" }}
-      >
-        <GunlukToplam />
-      </div>
-      <div style={{ display: "flex", justifyContent: "center", gap: "43px" }}>
+      <div>
         <div
           style={{
-            backgroundColor: "#86b4dd",
-            border: "1px solid white",
-            paddingTop: "5px",
-            borderRadius: "5px",
+            display: "flex",
+            justifyContent: "center",
+            marginTop: "5px",
           }}
         >
-          <GenelToplam />
-          <GenelToplamMiktar />
+          <GunlukToplam />
         </div>
-        <div style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            gap: "9px",
-            backgroundColor: "#86b4dd",
-            border: "1px solid white",
-            borderRadius: "5px",
-            paddingTop:"4px"
-          }}><GenelToplamHaftalik /></div>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            gap: "9px",
-            backgroundColor: "#86b4dd",
-            border: "1px solid white",
-            borderRadius: "5px",
-            paddingTop:"4px"
-          }}
-        >
-          <GenelToplamAylikSatis />
-          <GenelToplamAylik />
+        <div style={{ display: "flex", justifyContent: "center", gap: "43px" }}>
+          <div
+            style={{
+              backgroundColor: "#86b4dd",
+              border: "1px solid white",
+              paddingTop: "5px",
+              borderRadius: "5px",
+            }}
+          >
+            <GenelToplam />
+            <GenelToplamMiktar />
+          </div>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              gap: "9px",
+              backgroundColor: "#86b4dd",
+              border: "1px solid white",
+              borderRadius: "5px",
+              paddingTop: "4px",
+            }}
+          >
+            <GenelToplamHaftalik />
+          </div>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              gap: "9px",
+              backgroundColor: "#86b4dd",
+              border: "1px solid white",
+              borderRadius: "5px",
+              paddingTop: "4px",
+            }}
+          >
+            <GenelToplamAylikSatis />
+            <GenelToplamAylik />
+          </div>
         </div>
       </div>
 
-      <div
-        className="text-center text-warning pt-2"
-        style={{
-          padding: "10px",
-          boxSizing: "border-box",
-        }}
-      >
-        <div style={{ display: "flex", gap: "10px" }}>
+      <div>
+        <div className="kucukEkran">
           <KlasAku />
           <MutluAku />
           <InciAku />
@@ -82,5 +87,4 @@ const Home = () => {
     </div>
   );
 };
-
 export default Home;
